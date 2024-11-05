@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
 #include "Dog.generated.h"
 
@@ -19,6 +20,10 @@ public:
 	UPROPERTY(EditAnywhere, BLueprintreadWrite, Category = "Values") int Health = 100;
 	void Set_Score(int Change) {
 		PScore += Change;
+	}
+	void ResetLevel() {
+		FName(FirstPersonMap) = *GetWorld()->GetName();
+		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
 	}
 
 protected:

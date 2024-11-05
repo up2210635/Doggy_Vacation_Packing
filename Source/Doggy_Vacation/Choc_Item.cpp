@@ -6,6 +6,9 @@
 void AChoc_Item::TakeDamage(int Damage)
 {
 	Dog->Health -= Damage;
+	if (Dog->Health <= 0) {
+		Dog->ResetLevel();
+	}
 }
 
 void AChoc_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

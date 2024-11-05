@@ -5,23 +5,25 @@
 #include "CoreMinimal.h"
 #include "Damage_Interface.h"
 #include "Parent_Item.h"
-#include "Choc_Item.generated.h"
+#include "Steak_Item.generated.h"
 
 /**
- *
+ * 
  */
 UCLASS()
-class DOGGY_VACATION_API AChoc_Item : public AParent_Item, public IDamage_Interface
+class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface
 {
 	GENERATED_BODY()
-
+	
 public:
-	AChoc_Item() {
-		IScore = -50;
+	ASteak_Item() {
+		IScore = 75;
 	}
 
 	virtual void TakeDamage(int Damage) override;
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
-	UPROPERTY(EditAnywhere) int Attack = 75;
+
+	UPROPERTY(EditAnywhere) int Time = 10;
+	UPROPERTY() int Heal = 50;
 };
