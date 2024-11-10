@@ -22,5 +22,6 @@ class DOGGY_VACATION_API IDamage_Interface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void TakeDamage(int Change) = 0;
+
+	virtual void TakeDamage(int Change, int& HP);
 };

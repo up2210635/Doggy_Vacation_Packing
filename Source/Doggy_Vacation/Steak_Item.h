@@ -20,7 +20,6 @@ public:
 		IScore = 75;
 	}
 
-	virtual void TakeDamage(int Damage) override;
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
 
