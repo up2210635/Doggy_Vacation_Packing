@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Dog.h"
+#include "Inventory.h"
 #include "GameFramework/Actor.h"
 #include "Parent_Item.generated.h"
 
@@ -33,4 +34,5 @@ public:
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	ADog* Dog;
+	AInventory* Item;
 };

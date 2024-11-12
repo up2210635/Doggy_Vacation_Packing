@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Parent_Item.h"
 #include "GameFramework/Actor.h"
 #include "Inventory.generated.h"
+
+class AParent_Item;
 
 UCLASS()
 class DOGGY_VACATION_API AInventory : public AActor
@@ -16,7 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	AInventory();
 
-	UPROPERTY(EditDefaultsOnly) AParent_Item* Inventory;
+	void Set_Item(AParent_Item* Change) {
+		Items = Change;
+	}
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,5 +28,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+ 
+	//UPROPERTY(EditDefaultsOnly) TArray<int> Items;
+	UPROPERTY(EditDefaultsOnly) AParent_Item* Items;
 };
