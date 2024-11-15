@@ -30,8 +30,7 @@ void ADog::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
+void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ADog::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ADog::MoveRight);
@@ -55,4 +54,18 @@ void ADog::CheckJump() {
 		Jumping = false;
 	else
 		Jumping = true;
+}
+
+void ADog::Set_Score(int Change) {
+	PScore += Change;
+}
+
+void ADog::ResetLevel() {
+	FName(FirstPersonMap) = *GetWorld()->GetName();
+	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
+}
+
+void ADog::Add_Item(AParent_Item* Actor)
+{
+	Items.Add(Actor);
 }

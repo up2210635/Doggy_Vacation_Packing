@@ -2,6 +2,7 @@
 
 
 #include "Parent_Item.h"
+#include "Dog.h"
 #include "Components/BoxComPonent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -25,7 +26,6 @@ void AParent_Item::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 }
 
 // Called every frame
@@ -37,8 +37,10 @@ void AParent_Item::Tick(float DeltaTime)
 
 void AParent_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	if (Dog && Dog == OtherActor) {
 		Dog->Set_Score(IScore);
+		Dog->Add_Item(this);
 		Destroy();
 	}
 }

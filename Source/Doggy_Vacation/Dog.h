@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Dog.generated.h"
 
+class AParent_Item;
+
 UCLASS()
 class DOGGY_VACATION_API ADog : public ACharacter
 {
@@ -17,14 +19,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int PScore{};
 	UPROPERTY(EditAnywhere, BLueprintreadWrite, Category = "Values") int Health = 100;
+	UPROPERTY(EditAnywhere, BLueprintreadWrite) TArray<AParent_Item*> Items;
 
-	void Set_Score(int Change) {
-		PScore += Change;
-	}
-	void ResetLevel() {
-		FName(FirstPersonMap) = *GetWorld()->GetName();
-		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
-	}
+	void Set_Score(int Change);
+	void ResetLevel();
+	void Add_Item(AParent_Item* Actor);
 
 protected:
 	// Called when the game starts or when spawned
