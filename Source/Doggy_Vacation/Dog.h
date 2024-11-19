@@ -18,8 +18,9 @@ public:
 	ADog();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int PScore{};
-	UPROPERTY(EditAnywhere, BLueprintreadWrite, Category = "Values") int Health = 100;
-	UPROPERTY(EditAnywhere, BLueprintreadWrite) TArray<AParent_Item*> Items;
+	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health = 100;
+	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Items;
+	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
 	void Set_Score(int Change);
 	void ResetLevel();
@@ -41,6 +42,7 @@ protected:
 	void MoveForward(float AxisVal);
 	void MoveRight(float AxisVal);
 	void CheckJump();
+	void Spawn();
 
 	UPROPERTY() bool Jumping;
 };

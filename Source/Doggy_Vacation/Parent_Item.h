@@ -16,10 +16,18 @@ public:
 	AParent_Item();
 
 	UPROPERTY(EditAnywhere, Category = "Values") int IScore;
+	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
+
+	UFUNCTION() void Spawn_Item();
+
+	FVector Location;
+	FRotator Angle = FRotator::ZeroRotator;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	float CoinFlip(int Add, int Sides);
 
 public:
 	// Called every frame

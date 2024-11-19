@@ -2,6 +2,7 @@
 
 #include "Dog.h"
 #include "Components/StaticMeshComponent.h"
+#include "Parent_Item.h"
 
 // Sets default values
 ADog::ADog()
@@ -39,6 +40,7 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
+	PlayerInputComponent->BindAction(TEXT("Spawn"), IE_Pressed, this, &ADog::Spawn);
 }
 
 void ADog::MoveForward(float AxisVal) {
@@ -54,6 +56,11 @@ void ADog::CheckJump() {
 		Jumping = false;
 	else
 		Jumping = true;
+}
+
+void ADog::Spawn() {
+	UWorld* World = GetWorld();
+	World->SpawnActor<AParent_Item>(Actors, FVector(1500, 1750, 90), FRotator::ZeroRotator);
 }
 
 void ADog::Set_Score(int Change) {

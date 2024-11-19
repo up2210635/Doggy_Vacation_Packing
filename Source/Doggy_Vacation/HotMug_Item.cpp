@@ -10,6 +10,7 @@ void AHotMug_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* O
 	if (Dog && Dog == OtherActor) {
 		Dog->Set_Score(IScore);
 		Dog->Add_Item(this);
+		Spawn_Item();
 		IDamage_Interface::TakeDamage(Attack, Dog->Health);
 		if (Dog->Health <= 0) {
 			Dog->ResetLevel();
