@@ -59,15 +59,15 @@ void ADog::CheckJump() {
 }
 
 void ADog::Spawn() {
-	UWorld* World = GetWorld();
-	World->SpawnActor<AParent_Item>(Actors, FVector(1500, 1750, 90), FRotator::ZeroRotator);
+	OnSpawn.Broadcast();
 }
 
 void ADog::Set_Score(int Change) {
 	PScore += Change;
 }
 
-void ADog::ResetLevel() {
+void ADog::ResetLevel() const
+{
 	FName(FirstPersonMap) = *GetWorld()->GetName();
 	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
 }

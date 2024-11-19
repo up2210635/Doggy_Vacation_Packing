@@ -8,6 +8,8 @@
 
 class AParent_Item;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSpawn);
+
 UCLASS()
 class DOGGY_VACATION_API ADog : public ACharacter
 {
@@ -23,9 +25,11 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
 	void Set_Score(int Change);
-	void ResetLevel();
+	void ResetLevel() const;
 	void Add_Item(AParent_Item* Actor);
 
+	UPROPERTY(BlueprintAssignable) FOnSpawn OnSpawn;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
