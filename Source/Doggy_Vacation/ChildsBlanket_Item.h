@@ -14,4 +14,8 @@ class DOGGY_VACATION_API AChildsBlanket_Item : public AParent_Item
 {
 	GENERATED_BODY()
 	
+public:
+	AChildsBlanket_Item() {
+		IScore = 75;
+	}
 };

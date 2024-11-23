@@ -14,4 +14,8 @@ class DOGGY_VACATION_API ATeddyBear_Item : public AParent_Item
 {
 	GENERATED_BODY()
 	
+public:
+	ATeddyBear_Item() {
+		IScore = 100;
+	}
 };

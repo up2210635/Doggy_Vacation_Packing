@@ -4,18 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Parent_Item.h"
-#include "ChewToy_Item.generated.h"
+#include "DogJacket_Item.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class DOGGY_VACATION_API AChewToy_Item : public AParent_Item
+class DOGGY_VACATION_API ADogJacket_Item : public AParent_Item
 {
 	GENERATED_BODY()
 	
-public: 
-	AChewToy_Item() {
-		IScore = 50;
+public:
+	ADogJacket_Item() {
+		IScore = 20;
 	}
 };
