@@ -27,6 +27,7 @@ void ADog::BeginPlay()
 void ADog::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	UE_LOG(LogTemp, Warning, TEXT("Surprise!!!"));
 
 	if (Jumping) {
 		Jump();
@@ -61,11 +62,12 @@ void ADog::CheckJump() {
 		Jumping = true;
 }
 
-void ADog::Spawn() {
+void ADog::Spawn() const
+{
 	OnSpawn.Broadcast();
 }
 
-void ADog::Print_Time()
+void ADog::Print_Time() const
 {
 	float Test = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
 	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, "Time left: ");
@@ -76,7 +78,7 @@ void ADog::Set_Score(int Change)
 	PScore += Change;
 }
 
-void ADog::ResetLevel()
+void ADog::ResetLevel() const
 {
 	FName(FirstPersonMap) = *GetWorld()->GetName();
 	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);

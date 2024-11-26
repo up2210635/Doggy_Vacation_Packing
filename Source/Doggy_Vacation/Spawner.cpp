@@ -23,21 +23,27 @@ ASpawner::ASpawner()
 void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Spawn_Start();
 }
 
 // Called every frame
 void ASpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	Spawn_Start();
+	
 }
 
 void ASpawner::Spawn_Start()
 {
-	srand(time(0));
+	srand(time(nullptr));
 
+	if (!DefaultItemClass)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Null item class, what the fuck"));
+		return;
+	}
+		
 	UWorld* World = GetWorld();
 	World->SpawnActor<AParent_Item>(DefaultItemClass, FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
 }

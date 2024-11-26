@@ -26,7 +26,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
 	void Set_Score(int Change);
-	void ResetLevel();
+	void ResetLevel() const;
 	void Add_Item(AParent_Item* Actor);
 
 	UPROPERTY(BlueprintAssignable) FOnSpawn OnSpawn;
@@ -38,6 +38,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -47,8 +48,8 @@ protected:
 	void MoveForward(float AxisVal);
 	void MoveRight(float AxisVal);
 	void CheckJump();
-	void Spawn();
-	void Print_Time();
+	void Spawn() const;
+	void Print_Time() const;
 
 	UPROPERTY() bool Jumping;
 
