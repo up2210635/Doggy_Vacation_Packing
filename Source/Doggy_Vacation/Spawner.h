@@ -6,23 +6,24 @@
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
 
+class AParent_Item;
+
 UCLASS()
 class DOGGY_VACATION_API ASpawner : public AActor
 {
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this actor's properties
 	ASpawner();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void Spawn_Start();
 	float CoinFlip(int Add, int Sides);
+
+protected:
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AParent_Item> DefaultItemClass;
 };
