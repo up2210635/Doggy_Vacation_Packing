@@ -11,6 +11,8 @@ ADog::ADog()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Jumping = false;
+	Health = 100;
+	Time = 120;
 }
 
 // Called when the game starts or when spawned
@@ -18,6 +20,7 @@ void ADog::BeginPlay()
 {
 	Super::BeginPlay();
 
+	GetWorld()->GetTimerManager().SetTimer(FRoundTime, this, &ADog::ResetLevel, Time, false);
 }
 
 // Called every frame
@@ -62,11 +65,18 @@ void ADog::Spawn() {
 	OnSpawn.Broadcast();
 }
 
-void ADog::Set_Score(int Change) {
+void ADog::Print_Time()
+{
+	float Test = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, "Time left: ");
+}
+
+void ADog::Set_Score(int Change)
+{
 	PScore += Change;
 }
 
-void ADog::ResetLevel() const
+void ADog::ResetLevel()
 {
 	FName(FirstPersonMap) = *GetWorld()->GetName();
 	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);

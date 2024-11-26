@@ -3,6 +3,7 @@
 
 #include "Parent_Item.h"
 #include "Dog.h"
+#include "Spawner.h"
 #include "Components/BoxComPonent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 

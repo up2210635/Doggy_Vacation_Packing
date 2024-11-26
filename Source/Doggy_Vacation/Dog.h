@@ -20,12 +20,13 @@ public:
 	ADog();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int PScore{};
-	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health = 100;
+	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health{};
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") float Time;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Items;
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
 	void Set_Score(int Change);
-	void ResetLevel() const;
+	void ResetLevel();
 	void Add_Item(AParent_Item* Actor);
 
 	UPROPERTY(BlueprintAssignable) FOnSpawn OnSpawn;
@@ -47,6 +48,9 @@ protected:
 	void MoveRight(float AxisVal);
 	void CheckJump();
 	void Spawn();
+	void Print_Time();
 
 	UPROPERTY() bool Jumping;
+
+	FTimerHandle FRoundTime;
 };

@@ -10,7 +10,7 @@ UCLASS()
 class DOGGY_VACATION_API ASpawner : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:	
 	// Sets default values for this actor's properties
 	ASpawner();
@@ -23,4 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Spawn_Start();
+	float CoinFlip(int Add, int Sides);
 };
