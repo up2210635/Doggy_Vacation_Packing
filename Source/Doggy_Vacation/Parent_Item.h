@@ -25,6 +25,8 @@ public:
 	FVector Location;
 	FRotator Angle = FRotator::ZeroRotator;
 
+	static ConstructorHelpers::FClassFinder<AParent_Item> ItemClassAsset;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

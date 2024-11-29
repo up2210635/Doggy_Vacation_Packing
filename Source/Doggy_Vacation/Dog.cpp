@@ -27,7 +27,6 @@ void ADog::BeginPlay()
 void ADog::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Warning, TEXT("Surprise!!!"));
 
 	if (Jumping) {
 		Jump();
@@ -62,7 +61,7 @@ void ADog::CheckJump() {
 		Jumping = true;
 }
 
-void ADog::Spawn() const
+void ADog::Spawn()
 {
 	OnSpawn.Broadcast();
 }

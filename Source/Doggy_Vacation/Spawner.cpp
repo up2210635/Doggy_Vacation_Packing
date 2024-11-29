@@ -14,7 +14,8 @@ ASpawner::ASpawner()
 	{
 		DefaultItemClass = ItemClassAsset.Class;
 	}
-	else {
+	else 
+	{
 		UE_LOG(LogTemp, Error, TEXT("Things are fucked"));
 	}
 }

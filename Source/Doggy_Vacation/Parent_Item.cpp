@@ -20,6 +20,8 @@ AParent_Item::AParent_Item()
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AParent_Item::OnOverLapBegin);
 	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &AParent_Item::OnOverLapEnd);
 
+	ItemClassAsset = (TEXT("/Game/Blueprints/BP_Parent_Item"));
+
 	IScore = 50;
 }
 
