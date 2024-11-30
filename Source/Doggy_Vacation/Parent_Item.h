@@ -22,6 +22,8 @@ public:
 
 	UFUNCTION() void Spawn_Item();
 
+	static ConstructorHelpers::FClassFinder<AParent_Item> ItemClass;
+
 	FVector Location;
 	FRotator Angle = FRotator::ZeroRotator;
 

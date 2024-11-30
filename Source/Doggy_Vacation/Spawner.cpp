@@ -32,7 +32,11 @@ void ASpawner::BeginPlay()
 void ASpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+<<<<<<< Updated upstream
 	
+=======
+
+>>>>>>> Stashed changes
 }
 
 void ASpawner::Spawn_Start()
