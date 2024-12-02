@@ -20,10 +20,15 @@ public:
 
 	void Spawn_Start();
 	float CoinFlip(int Add, int Sides);
+	void Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClass);
 
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere) int Index{};
+	UPROPERTY(EditAnywhere) FString Adresses;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AParent_Item> DefaultItemClass;
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<AParent_Item>> Classes;
 };
