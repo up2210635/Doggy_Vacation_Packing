@@ -16,11 +16,9 @@ class DOGGY_VACATION_API AHotMug_Item : public AParent_Item, public IDamage_Inte
 	GENERATED_BODY()
 	
 public:
-	AHotMug_Item() {
-		IScore = -50;
-	}
+	AHotMug_Item();
 
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
-	UPROPERTY(EditAnywhere) int Attack = -50;
+	UPROPERTY(EditAnywhere) int Attack;
 };

@@ -13,9 +13,7 @@ UCLASS()
 class DOGGY_VACATION_API ABeachBall_Item : public AParent_Item
 {
 	GENERATED_BODY()
-	
+
 public:
-	ABeachBall_Item() {
-		IScore = 25;
-	}
+	ABeachBall_Item();
 };

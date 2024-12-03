@@ -3,3 +3,7 @@
 
 #include "ChewToy_Item.h"
 
+AChewToy_Item::AChewToy_Item()
+{
+	IScore = 50;
+}

@@ -15,7 +15,5 @@ class DOGGY_VACATION_API APhone_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public:
-	APhone_Item() {
-		IScore = -25;
-	}
+	APhone_Item();
 };

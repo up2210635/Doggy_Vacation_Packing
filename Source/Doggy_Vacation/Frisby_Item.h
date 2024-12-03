@@ -15,7 +15,5 @@ class DOGGY_VACATION_API AFrisby_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public:
-	AFrisby_Item() {
-		IScore = 15;
-	}
+	AFrisby_Item();
 };

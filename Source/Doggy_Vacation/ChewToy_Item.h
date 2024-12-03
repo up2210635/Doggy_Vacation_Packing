@@ -15,7 +15,5 @@ class DOGGY_VACATION_API AChewToy_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public: 
-	AChewToy_Item() {
-		IScore = 50;
-	}
+	AChewToy_Item();
 };

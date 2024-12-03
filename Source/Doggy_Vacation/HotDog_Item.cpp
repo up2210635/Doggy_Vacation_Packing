@@ -3,3 +3,7 @@
 
 #include "HotDog_Item.h"
 
+AHotDog_Item::AHotDog_Item()
+{
+	IScore = 10;
+}

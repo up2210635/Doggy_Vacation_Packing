@@ -4,6 +4,12 @@
 #include "Choc_Item.h"
 #include "Dog.h"
 
+AChoc_Item::AChoc_Item()
+{
+	IScore = -50;
+	Attack = -75;
+}
+
 void AChoc_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));

@@ -15,7 +15,5 @@ class DOGGY_VACATION_API AShoes_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public:
-	AShoes_Item() {
-		IScore = -25;
-	}
+	AShoes_Item();
 };

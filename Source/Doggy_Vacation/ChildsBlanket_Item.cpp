@@ -3,3 +3,7 @@
 
 #include "ChildsBlanket_Item.h"
 
+AChildsBlanket_Item::AChildsBlanket_Item()
+{
+	IScore = 75;
+}

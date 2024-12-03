@@ -25,7 +25,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere) int Index{};
+	UPROPERTY(EditAnywhere) int Length;
 	UPROPERTY(EditAnywhere) FString Adresses;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AParent_Item> DefaultItemClass;

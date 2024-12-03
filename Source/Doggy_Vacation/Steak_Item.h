@@ -16,13 +16,11 @@ class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Inter
 	GENERATED_BODY()
 	
 public:
-	ASteak_Item() {
-		IScore = 75;
-	}
+	ASteak_Item();
 
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
 
 	UPROPERTY(EditAnywhere) int Time = 10;
-	UPROPERTY() int Heal = 50;
+	UPROPERTY() int Heal;
 };

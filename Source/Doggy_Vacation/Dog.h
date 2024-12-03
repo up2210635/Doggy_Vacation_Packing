@@ -20,7 +20,8 @@ public:
 	ADog();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int PScore{};
-	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health{};
+	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int Time_Remaining{};
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") float Time;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Items;
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;

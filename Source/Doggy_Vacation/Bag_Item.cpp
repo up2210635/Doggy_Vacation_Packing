@@ -3,3 +3,6 @@
 
 #include "Bag_Item.h"
 
+ABag_Item::ABag_Item() {
+	IScore = 5;
+}

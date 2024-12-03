@@ -3,3 +3,7 @@
 
 #include "Bone_Item.h"
 
+ABone_Item::ABone_Item()
+{
+	IScore = 50;
+}

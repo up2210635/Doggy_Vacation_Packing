@@ -3,3 +3,7 @@
 
 #include "DogBed_Item.h"
 
+ADogBed_Item::ADogBed_Item()
+{
+	IScore = -10;
+}

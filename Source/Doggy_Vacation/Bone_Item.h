@@ -15,7 +15,5 @@ class DOGGY_VACATION_API ABone_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public:
-	ABone_Item() {
-		IScore = 50;
-	}
+	ABone_Item();
 };

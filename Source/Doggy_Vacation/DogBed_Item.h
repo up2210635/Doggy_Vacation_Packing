@@ -15,7 +15,5 @@ class DOGGY_VACATION_API ADogBed_Item : public AParent_Item
 	GENERATED_BODY()
 	
 public:
-	ADogBed_Item() {
-		IScore = -10;
-	}
+	ADogBed_Item();
 };

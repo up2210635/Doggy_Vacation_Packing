@@ -3,3 +3,7 @@
 
 #include "Phone_Item.h"
 
+APhone_Item::APhone_Item()
+{
+	IScore = -25;
+}

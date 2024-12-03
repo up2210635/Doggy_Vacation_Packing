@@ -44,6 +44,7 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Spawn"), IE_Pressed, this, &ADog::Spawn);
+	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Time);
 }
 
 void ADog::MoveForward(float AxisVal) {
@@ -67,8 +68,7 @@ void ADog::Spawn() {
 
 void ADog::Print_Time()
 {
-	float Test = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
-	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Green, "Time left: ");
+	Time_Remaining = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
 }
 
 void ADog::Set_Score(int Change)

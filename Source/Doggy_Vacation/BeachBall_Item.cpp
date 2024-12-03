@@ -3,3 +3,7 @@
 
 #include "BeachBall_Item.h"
 
+ABeachBall_Item::ABeachBall_Item()
+{
+	IScore = 25;
+}
