@@ -43,7 +43,7 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
-	PlayerInputComponent->BindAction(TEXT("Spawn"), IE_Pressed, this, &ADog::Spawn);
+	PlayerInputComponent->BindAction(TEXT("Spawn"), IE_Pressed, this, &ADog::Kennel);
 	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Time);
 }
 
@@ -62,13 +62,15 @@ void ADog::CheckJump() {
 		Jumping = true;
 }
 
-void ADog::Spawn() {
+void ADog::Kennel() {
 	OnSpawn.Broadcast();
 }
 
 void ADog::Print_Time()
 {
 	Time_Remaining = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Time: %i"), Time_Remaining));
 }
 
 void ADog::Set_Score(int Change)

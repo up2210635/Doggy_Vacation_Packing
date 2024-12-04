@@ -48,7 +48,7 @@ protected:
 	void MoveForward(float AxisVal);
 	void MoveRight(float AxisVal);
 	void CheckJump();
-	void Spawn();
+	void Kennel();
 	void Print_Time();
 
 	UPROPERTY() bool Jumping;

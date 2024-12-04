@@ -25,10 +25,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere) int Length;
-	UPROPERTY(EditAnywhere) FString Adresses;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AParent_Item> DefaultItemClass;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<AParent_Item>> Classes;
+	UPROPERTY(EditAnywhere) 
+	TArray<FString> Adresses;
 };

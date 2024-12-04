@@ -3,9 +3,7 @@
 
 #include "Parent_Item.h"
 #include "Dog.h"
-#include "Spawner.h"
 #include "Components/BoxComPonent.h"
-#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 // Sets default values
 AParent_Item::AParent_Item()
@@ -35,8 +33,7 @@ void AParent_Item::Spawn_Item() {
 void AParent_Item::BeginPlay()
 {
 	Super::BeginPlay();
-	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	Dog->OnSpawn.AddDynamic(this,&AParent_Item::Pick_Up);
+	
 }
 
  float AParent_Item::CoinFlip(int Add, int Sides)
@@ -69,6 +66,7 @@ void AParent_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* O
 {
 	InBox = true;
 	Ptr = OtherActor;
+	Pick_Up();
 }
 
 void AParent_Item::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
