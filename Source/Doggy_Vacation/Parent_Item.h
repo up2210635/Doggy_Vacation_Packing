@@ -17,7 +17,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Values") int IScore;
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
-	UPROPERTY() bool InBox;
 	UPROPERTY()AActor* Ptr;
 
 	UFUNCTION() void Spawn_Item();
@@ -43,6 +42,4 @@ public:
 	UFUNCTION() 
 	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	UFUNCTION() 
-	virtual void OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };

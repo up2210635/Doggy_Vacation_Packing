@@ -16,7 +16,6 @@ AParent_Item::AParent_Item()
 	RootComponent = CollisionBox;
 
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AParent_Item::OnOverLapBegin);
-	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &AParent_Item::OnOverLapEnd);
 
 	IScore = 50;
 }
@@ -43,10 +42,12 @@ void AParent_Item::BeginPlay()
 
 void AParent_Item::Pick_Up()
 {
-	if (InBox == true)
+	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	if (Dog && Dog == Ptr)
 	{
-		ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-		if (Dog && Dog == Ptr) {
+		if (Dog->Holding == false) 
+		{
+			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn_Item();
@@ -64,13 +65,6 @@ void AParent_Item::Tick(float DeltaTime)
 
 void AParent_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	InBox = true;
 	Ptr = OtherActor;
 	Pick_Up();
-}
-
-void AParent_Item::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	InBox = false;
-	Ptr = OtherActor;
 }

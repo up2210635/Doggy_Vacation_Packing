@@ -3,6 +3,7 @@
 
 #include "kennel.h"
 #include "Dog.h"
+#include "Spawner.h"
 #include "Components/BoxComPonent.h"
 
 // Sets default values
@@ -14,6 +15,8 @@ Akennel::Akennel()
 	KennelBox = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	KennelBox->SetBoxExtent(FVector(20.f, 20.f, 20.f));
 	RootComponent = KennelBox;
+
+	KennelBox->OnComponentBeginOverlap.AddDynamic(this, &Akennel::OnOverLapBegin);
 }
 
 // Called when the game starts or when spawned
@@ -21,7 +24,7 @@ void Akennel::BeginPlay()
 {
 	Super::BeginPlay();
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	//Dog->OnSpawn.AddDynamic(this, Akennel::Place_Item);
+	Dog->OnInteract.AddDynamic(this,&Akennel::Place_Item);
 }
 
 // Called every frame
@@ -34,5 +37,17 @@ void Akennel::Tick(float DeltaTime)
 void Akennel::Place_Item()
 {
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Hellow"));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Hello World"));
+}
+
+void Akennel::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	if (Dog && Dog == OtherActor) 
+	{
+		if (Dog->Holding == true) 
+		{
+			Dog->Holding = false;
+		}
+	}
 }

@@ -19,6 +19,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void Spawn_Start();
+	void Place_Item(int Index, FVector Location);
 	float CoinFlip(int Add, int Sides);
 	void Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClass);
 

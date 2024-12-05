@@ -48,6 +48,12 @@ void ASpawner::Spawn_Start()
 	}
 }
 
+void ASpawner::Place_Item(int Index, FVector Location)
+{
+	UWorld* World = GetWorld();
+	World->SpawnActor<AParent_Item>(Classes[Index], Location, FRotator::ZeroRotator);
+}
+
 float ASpawner::CoinFlip(int Add, int Sides)
 {
 	return (Add + (FMath::Rand() % Sides));

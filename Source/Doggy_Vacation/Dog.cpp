@@ -11,6 +11,7 @@ ADog::ADog()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Jumping = false;
+	Holding = false;
 	Health = 100;
 	Time = 120;
 }
@@ -43,7 +44,7 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
-	PlayerInputComponent->BindAction(TEXT("Spawn"), IE_Pressed, this, &ADog::Kennel);
+	PlayerInputComponent->BindAction(TEXT("Interact"), IE_Pressed, this, &ADog::Kennel);
 	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Time);
 }
 
@@ -63,7 +64,7 @@ void ADog::CheckJump() {
 }
 
 void ADog::Kennel() {
-	OnSpawn.Broadcast();
+	OnInteract.Broadcast();
 }
 
 void ADog::Print_Time()

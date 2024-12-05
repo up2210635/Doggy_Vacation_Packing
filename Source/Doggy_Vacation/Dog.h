@@ -8,7 +8,7 @@
 
 class AParent_Item;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSpawn);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteract);
 
 UCLASS()
 class DOGGY_VACATION_API ADog : public ACharacter
@@ -23,6 +23,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int Time_Remaining{};
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") float Time;
+	// is dog Holding item
+	UPROPERTY() bool Holding;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Items;
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
@@ -30,7 +32,7 @@ public:
 	void ResetLevel();
 	void Add_Item(AParent_Item* Actor);
 
-	UPROPERTY(BlueprintAssignable) FOnSpawn OnSpawn;
+	UPROPERTY(BlueprintAssignable) FOnInteract OnInteract;
 	
 protected:
 	// Called when the game starts or when spawned
