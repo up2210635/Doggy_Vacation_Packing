@@ -4,6 +4,7 @@
 #include "kennel.h"
 #include "Dog.h"
 #include "Spawner.h"
+#include "Parent_Item.h"
 #include "Components/BoxComPonent.h"
 
 // Sets default values
@@ -46,7 +47,14 @@ void Akennel::Place_Item()
 		{
 			if (Dog->Holding == true)
 			{
-				Dog->Holding = false;
+				ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+				if(Spawn)
+				{
+					Spawn->Spawn_Item(Dog->Get_Items());
+					Dog->Holding = false;
+				}
+				else
+					UE_LOG(LogTemp, Error, TEXT("cast failed"));
 			}
 		}
 	}

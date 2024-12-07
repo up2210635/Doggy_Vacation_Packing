@@ -19,8 +19,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 	UPROPERTY()AActor* Ptr;
 
-	UFUNCTION() void Spawn_Item();
-
 	FVector Location;
 	FRotator Angle = FRotator::ZeroRotator;
 

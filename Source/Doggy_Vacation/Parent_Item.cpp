@@ -20,14 +20,6 @@ AParent_Item::AParent_Item()
 	IScore = 50;
 }
 
-void AParent_Item::Spawn_Item() {
-
-	srand(time(0));
-
-	UWorld* World = GetWorld();
-	World->SpawnActor<AParent_Item>(Actors, FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
-}
-
 // Called when the game starts or when spawned
 void AParent_Item::BeginPlay()
 {
@@ -50,7 +42,7 @@ void AParent_Item::Pick_Up()
 			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
-			Spawn_Item();
+			//Spawn_Item();
 			Destroy();
 		}
 	}

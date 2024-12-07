@@ -87,13 +87,10 @@ void ADog::ResetLevel()
 
 void ADog::Add_Item(AParent_Item* Actor)
 {
-	Items.Add(Actor);
+	Inventory.Add(Actor);
 }
 
-void ADog::Get_Items_Name()
+TSubclassOf<AParent_Item> ADog::Get_Items()
 {
-	for (int i = -1; i < Enum_Items::BP_Mug_Item; i++)
-	{
-
-	}
+	return Inventory.Top()->Actors;
 }

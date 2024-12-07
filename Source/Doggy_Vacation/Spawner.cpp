@@ -9,11 +9,11 @@ ASpawner::ASpawner()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Adresses = { "/Game/Blueprints/Good_Items/BP_TeddyBear_Item", "/Game/Blueprints/Good_Items/BP_Bone_Item", "/Game/Blueprints/Good_Items/BP_Steak_Item", 
-				 "/Game/Blueprints/Good_Items/BP_ChewToy_Item", "/Game/Blueprints/Good_Items/BP_ChildsBlanket_Item", "/Game/Blueprints/Normal_Items/BP_Frisby_Item", 
-			     "/Game/Blueprints/Normal_Items/BP_DogJacket_Item", "/Game/Blueprints/Normal_Items/BP_HotDog_Item", "/Game/Blueprints/Normal_Items/BP_BeachBall_Item",
-				 "/Game/Blueprints/Normal_Items/BP_Bag_Item", "/Game/Blueprints/Bad_Items/BP_Choc_Item", "/Game/Blueprints/Bad_Items/BP_Phone_Item", 
-				 "/Game/Blueprints/Bad_Items/BP_Shoes_Item", "/Game/Blueprints/Bad_Items/BP_DogBed_Item", "/Game/Blueprints/Bad_Items/BP_Mug_Item" };
+	Adresses = { "/Game/Blueprints/Good_Items/BP_TeddyBear_Item",   "/Game/Blueprints/Good_Items/BP_Bone_Item",          "/Game/Blueprints/Good_Items/BP_Steak_Item", 
+				 "/Game/Blueprints/Good_Items/BP_ChewToy_Item",     "/Game/Blueprints/Good_Items/BP_ChildsBlanket_Item", "/Game/Blueprints/Normal_Items/BP_Frisby_Item", 
+			     "/Game/Blueprints/Normal_Items/BP_DogJacket_Item", "/Game/Blueprints/Normal_Items/BP_HotDog_Item",      "/Game/Blueprints/Normal_Items/BP_BeachBall_Item",
+				 "/Game/Blueprints/Normal_Items/BP_Bag_Item",       "/Game/Blueprints/Bad_Items/BP_Choc_Item",           "/Game/Blueprints/Bad_Items/BP_Phone_Item", 
+				 "/Game/Blueprints/Bad_Items/BP_Shoes_Item",        "/Game/Blueprints/Bad_Items/BP_DogBed_Item",         "/Game/Blueprints/Bad_Items/BP_Mug_Item" };
 
 	for (int i{}; i < Adresses.Num(); i++)
 	{
@@ -43,15 +43,13 @@ void ASpawner::Spawn_Start()
 
 	for (int i{}; i < Classes.Num(); i++)
 	{
-		UWorld* World = GetWorld();
-		World->SpawnActor<AParent_Item>(Classes[i], FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
+		GetWorld()->SpawnActor<AParent_Item>(Classes[i], FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
 	}
 }
 
-void ASpawner::Place_Item(int Index, FVector Location)
+void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item)
 {
-	UWorld* World = GetWorld();
-	World->SpawnActor<AParent_Item>(Classes[Index], Location, FRotator::ZeroRotator);
+	GetWorld()->SpawnActor<AParent_Item>(Item, FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
 }
 
 float ASpawner::CoinFlip(int Add, int Sides)
@@ -68,6 +66,6 @@ void ASpawner::Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClas
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Things are fucked"));
+		UE_LOG(LogTemp, Error, TEXT("ItemClass did not succeed"));
 	}
 }
