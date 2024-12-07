@@ -15,8 +15,6 @@ void ASteak_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	if (Dog && Dog == OtherActor) {
 		Dog->Set_Score(IScore);
-		Dog->Add_Item(this);
-		Spawn_Item();
 		IDamage_Interface::TakeDamage(Heal, Dog->Health);
 		Destroy();
 	}

@@ -50,13 +50,16 @@ void Akennel::Place_Item()
 				ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 				if(Spawn)
 				{
-					Spawn->Spawn_Item(Dog->Get_Items());
+					FVector Location = GetActorLocation();
+					Spawn->Spawn_Item(Dog->Get_Items(), Location);
 					Dog->Holding = false;
 				}
 				else
-					UE_LOG(LogTemp, Error, TEXT("cast failed"));
+					UE_LOG(LogTemp, Error, TEXT("spawn cast failed"));
 			}
 		}
+		else
+			UE_LOG(LogTemp, Error, TEXT("dog cast failed"));
 	}
 }
 

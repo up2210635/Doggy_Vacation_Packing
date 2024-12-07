@@ -27,11 +27,6 @@ void AParent_Item::BeginPlay()
 	
 }
 
- float AParent_Item::CoinFlip(int Add, int Sides)
-{
-	return (Add + (FMath::Rand() % Sides));
-}
-
 void AParent_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));

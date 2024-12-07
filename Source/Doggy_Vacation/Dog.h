@@ -19,17 +19,27 @@ public:
 	// Sets default values for this character's properties
 	ADog();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int PScore{};
-	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") int Health;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") int Time_Remaining{};
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") float Time;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
+	int PScore{};
+	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") 
+	int Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
+	int Time_Remaining{};
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
+	float Time;
 	// is dog Holding item
-	UPROPERTY() bool Holding;
-	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Inventory;
+	UPROPERTY() 
+	bool Holding;
+	UPROPERTY(EditAnywhere, BlueprintreadWrite) 
+	TArray<AParent_Item*> Inventory;
 
+	UFUNCTION()
 	void Set_Score(int Change);
+	UFUNCTION()
 	void ResetLevel();
+	UFUNCTION()
 	void Add_Item(AParent_Item* Actor);
+	UFUNCTION()
 	TSubclassOf<AParent_Item> Get_Items();
 
 	UPROPERTY(BlueprintAssignable) FOnInteract OnInteract;
@@ -47,13 +57,19 @@ public:
 
 protected:
 
+	UFUNCTION()
 	void MoveForward(float AxisVal);
+	UFUNCTION()
 	void MoveRight(float AxisVal);
+	UFUNCTION()
 	void CheckJump();
+	UFUNCTION()
 	void Kennel();
+	UFUNCTION()
 	void Print_Time();
 
-	UPROPERTY() bool Jumping;
-
+	UPROPERTY() 
+	bool Jumping;
+	UPROPERTY()
 	FTimerHandle FRoundTime;
 };

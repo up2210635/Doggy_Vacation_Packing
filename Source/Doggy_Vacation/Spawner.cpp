@@ -47,9 +47,9 @@ void ASpawner::Spawn_Start()
 	}
 }
 
-void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item)
+void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item, FVector Location)
 {
-	GetWorld()->SpawnActor<AParent_Item>(Item, FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
+	GetWorld()->SpawnActor<AParent_Item>(Item, Location, FRotator::ZeroRotator);
 }
 
 float ASpawner::CoinFlip(int Add, int Sides)

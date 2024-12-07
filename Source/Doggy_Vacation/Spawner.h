@@ -25,9 +25,13 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
 	void Spawn_Start();
-	void Spawn_Item(TSubclassOf<AParent_Item> Item);
+	UFUNCTION()
+	void Spawn_Item(TSubclassOf<AParent_Item> Item, FVector Location);
+	UFUNCTION()
 	float CoinFlip(int Add, int Sides);
+
 	void Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClass);
 
 protected:

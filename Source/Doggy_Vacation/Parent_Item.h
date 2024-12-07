@@ -15,20 +15,23 @@ public:
 	// Sets default values for this actor's properties
 	AParent_Item();
 
-	UPROPERTY(EditAnywhere, Category = "Values") int IScore;
-	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
-	UPROPERTY()AActor* Ptr;
-
+	UPROPERTY(EditAnywhere, Category = "Values") 
+	int IScore;
+	UPROPERTY(EditDefaultsOnly, Category = "Spawning") 
+	TSubclassOf<AParent_Item> Actors;
+	UPROPERTY()
+	AActor* Ptr;
+	UPROPERTY()
 	FVector Location;
+	UPROPERTY()
 	FRotator Angle = FRotator::ZeroRotator;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	float CoinFlip(int Add, int Sides);
-
-	UFUNCTION() void Pick_Up();
+	UFUNCTION() 
+	void Pick_Up();
 
 public:
 	// Called every frame

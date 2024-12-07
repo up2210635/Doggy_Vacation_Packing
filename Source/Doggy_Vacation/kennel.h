@@ -31,8 +31,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UBoxComponent* KennelBox;
-	UPROPERTY()AActor* Ptr;
-	UPROPERTY() bool InBox;
+	UPROPERTY()
+	AActor* Ptr;
+	UPROPERTY() 
+	bool InBox;
 
 	UFUNCTION()
 	void Place_Item();
