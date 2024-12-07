@@ -89,3 +89,11 @@ void ADog::Add_Item(AParent_Item* Actor)
 {
 	Items.Add(Actor);
 }
+
+void ADog::Get_Items_Name()
+{
+	for (int i = -1; i < Enum_Items::BP_Mug_Item; i++)
+	{
+
+	}
+}

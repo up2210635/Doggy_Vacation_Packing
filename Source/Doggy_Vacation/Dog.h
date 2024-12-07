@@ -10,6 +10,12 @@ class AParent_Item;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteract);
 
+enum Enum_Items
+{
+	BP_TeddyBear_Item, BP_Bone_Item, BP_Steak_Item, BP_ChewToy_Item, BP_ChildsBlanket_Item, BP_Frisby_Item, BP_DogJacket_Item, BP_HotDog_Item, BP_BeachBall_Item, BP_Bag_Item,
+	BP_Choc_Item, BP_Phone_Item, BP_Shoes_Item, BP_DogBed_Item, BP_Mug_Item
+};
+
 UCLASS()
 class DOGGY_VACATION_API ADog : public ACharacter
 {
@@ -26,11 +32,11 @@ public:
 	// is dog Holding item
 	UPROPERTY() bool Holding;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite) TArray<AParent_Item*> Items;
-	UPROPERTY(EditDefaultsOnly, Category = "Spawning") TSubclassOf<AParent_Item> Actors;
 
 	void Set_Score(int Change);
 	void ResetLevel();
 	void Add_Item(AParent_Item* Actor);
+	void Get_Items_Name();
 
 	UPROPERTY(BlueprintAssignable) FOnInteract OnInteract;
 	

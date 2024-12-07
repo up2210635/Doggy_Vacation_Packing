@@ -17,6 +17,9 @@ Akennel::Akennel()
 	RootComponent = KennelBox;
 
 	KennelBox->OnComponentBeginOverlap.AddDynamic(this, &Akennel::OnOverLapBegin);
+	KennelBox->OnComponentEndOverlap.AddDynamic(this, &Akennel::OnOverLapEnd);
+
+	InBox = false;
 }
 
 // Called when the game starts or when spawned
@@ -36,18 +39,27 @@ void Akennel::Tick(float DeltaTime)
 
 void Akennel::Place_Item()
 {
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Hello World"));
+	if (InBox == true)
+	{
+		ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+		if (Dog && Dog == Ptr)
+		{
+			if (Dog->Holding == true)
+			{
+				Dog->Holding = false;
+			}
+		}
+	}
 }
 
 void Akennel::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == OtherActor) 
-	{
-		if (Dog->Holding == true) 
-		{
-			Dog->Holding = false;
-		}
-	}
+	Ptr = OtherActor;
+	InBox = true;
+}
+
+void Akennel::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	Ptr = OtherActor;
+	InBox = false;
 }
