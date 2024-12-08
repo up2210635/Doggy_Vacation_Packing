@@ -26,7 +26,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
 	int Time_Remaining{};
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
-	float Time;
+	int Time;
 	// is dog Holding item
 	UPROPERTY() 
 	bool Holding;
@@ -38,11 +38,18 @@ public:
 	UFUNCTION()
 	void ResetLevel();
 	UFUNCTION()
+	void Counter();
+	UFUNCTION()
 	void Add_Item(AParent_Item* Actor);
 	UFUNCTION()
 	TSubclassOf<AParent_Item> Get_Items();
+	UFUNCTION()
+	float Get_Time();
 
-	UPROPERTY(BlueprintAssignable) FOnInteract OnInteract;
+	UPROPERTY(BlueprintAssignable) 
+	FOnInteract OnInteract;
+	UPROPERTY()
+	FTimerHandle FRoundTime;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -66,10 +73,10 @@ protected:
 	UFUNCTION()
 	void Kennel();
 	UFUNCTION()
-	void Print_Time();
+	void Print_Data();
+	UFUNCTION()
+	void Print();
 
 	UPROPERTY() 
 	bool Jumping;
-	UPROPERTY()
-	FTimerHandle FRoundTime;
 };

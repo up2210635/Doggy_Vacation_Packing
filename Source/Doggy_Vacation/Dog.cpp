@@ -21,7 +21,7 @@ void ADog::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetWorld()->GetTimerManager().SetTimer(FRoundTime, this, &ADog::ResetLevel, Time, false);
+	GetWorld()->GetTimerManager().SetTimer(FRoundTime, this, &ADog::Counter, 1.0f, true, 0.0f);
 }
 
 // Called every frame
@@ -45,7 +45,7 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Interact"), IE_Pressed, this, &ADog::Kennel);
-	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Time);
+	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Data);
 }
 
 void ADog::MoveForward(float AxisVal) {
@@ -67,11 +67,25 @@ void ADog::Kennel() {
 	OnInteract.Broadcast();
 }
 
-void ADog::Print_Time()
+void ADog::Print_Data()
 {
-	Time_Remaining = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Time: %i"), Time_Remaining));
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("____________"));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Time: %i"), Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Score: %i"), PScore));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("HP: %i"), Health));
+	}
+}
+
+void ADog::Print()
+{
+	for (int i{}; i < Inventory.Num(); i++)
+	{
+		FString Name = UKismetSystemLibrary::GetDisplayName(Inventory[i]);
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, Name);
+	}
 }
 
 void ADog::Set_Score(int Change)
@@ -81,8 +95,21 @@ void ADog::Set_Score(int Change)
 
 void ADog::ResetLevel()
 {
-	FName(FirstPersonMap) = *GetWorld()->GetName();
-	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
+		FName(FirstPersonMap) = *GetWorld()->GetName();
+		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
+}
+
+void ADog::Counter()
+{
+	if (Time != 0)
+	{
+		Time -= 1;
+	}
+	else
+	{
+		FName(FirstPersonMap) = *GetWorld()->GetName();
+		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
+	}
 }
 
 void ADog::Add_Item(AParent_Item* Actor)
@@ -92,5 +119,16 @@ void ADog::Add_Item(AParent_Item* Actor)
 
 TSubclassOf<AParent_Item> ADog::Get_Items()
 {
-	return Inventory.Top()->Actors;
+	if(Inventory.Top()->Actors)
+		return Inventory.Top()->Actors;
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No item"));
+		return nullptr;
+	}
+}
+
+float ADog::Get_Time()
+{
+	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
 }

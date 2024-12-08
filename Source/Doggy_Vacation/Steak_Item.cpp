@@ -10,12 +10,20 @@ ASteak_Item::ASteak_Item()
 	Heal = 50;
 }
 
-void ASteak_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ASteak_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == OtherActor) {
+	if (Dog && Dog == Ptr)
+	{
 		Dog->Set_Score(IScore);
 		IDamage_Interface::TakeDamage(Heal, Dog->Health);
+		ITime_Interface::Time_Changer(Time, Dog->Time);
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("____________"));
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Health));
+		}
 		Destroy();
 	}
 }

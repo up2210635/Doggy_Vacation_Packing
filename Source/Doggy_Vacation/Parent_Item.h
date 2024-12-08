@@ -31,7 +31,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION() 
-	void Pick_Up();
+	virtual void Pick_Up();
 
 public:
 	// Called every frame
@@ -41,6 +41,6 @@ public:
 	class UBoxComponent* CollisionBox;
 
 	UFUNCTION() 
-	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 };

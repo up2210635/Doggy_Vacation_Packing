@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Damage_Interface.h"
+#include "Time_Interface.h"
 #include "Parent_Item.h"
 #include "Steak_Item.generated.h"
 
@@ -11,16 +12,17 @@
  * 
  */
 UCLASS()
-class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface
+class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface, public ITime_Interface
 {
 	GENERATED_BODY()
 	
 public:
 	ASteak_Item();
 
-	virtual void OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
+	virtual void Pick_Up();
 
-
-	UPROPERTY(EditAnywhere) int Time = 10;
-	UPROPERTY() int Heal;
+	UPROPERTY(EditAnywhere) 
+	int Time = 10;
+	UPROPERTY() 
+	int Heal;
 };

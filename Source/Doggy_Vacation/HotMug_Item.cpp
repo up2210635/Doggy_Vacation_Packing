@@ -10,10 +10,10 @@ AHotMug_Item::AHotMug_Item()
 	Attack = -50;
 }
 
-void AHotMug_Item::OnOverLapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AHotMug_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == OtherActor) {
+	if (Dog && Dog == Ptr) {
 		Dog->Set_Score(IScore);
 		IDamage_Interface::TakeDamage(Attack, Dog->Health);
 		if (Dog->Health <= 0) {

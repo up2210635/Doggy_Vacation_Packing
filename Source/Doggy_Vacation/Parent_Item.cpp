@@ -37,7 +37,6 @@ void AParent_Item::Pick_Up()
 			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
-			//Spawn_Item();
 			Destroy();
 		}
 	}
