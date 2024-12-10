@@ -3,6 +3,7 @@
 #include "Dog.h"
 #include "Components/StaticMeshComponent.h"
 #include "Parent_Item.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 ADog::ADog()
@@ -140,5 +141,5 @@ int ADog::Get_Spawn_index()
 
 void ADog::Jump_Boost()
 {
-	GetCharacterMovement();
+	GetCharacterMovement()->JumpZVelocity = 840.0f;
 }

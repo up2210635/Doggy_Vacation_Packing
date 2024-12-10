@@ -3,6 +3,7 @@
 
 #include "Steak_Item.h"
 #include "Dog.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ASteak_Item::ASteak_Item()
 {
@@ -25,6 +26,17 @@ void ASteak_Item::Pick_Up()
 			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
 			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Health));
 		}
+		Dog->GetCharacterMovement()->JumpZVelocity = 840.0f;
+		GetWorld()->GetTimerManager().SetTimer(FEffectsTimer, this, &ASteak_Item::Reset_Effects, 1.0f, false);
 		Destroy();
+	}
+}
+
+void ASteak_Item::Reset_Effects()
+{
+	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	if (Dog)
+	{
+		Dog->GetCharacterMovement()->JumpZVelocity = 420.0f;
 	}
 }

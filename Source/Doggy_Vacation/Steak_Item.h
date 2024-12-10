@@ -18,11 +18,18 @@ class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Inter
 	
 public:
 	ASteak_Item();
-
+	
 	virtual void Pick_Up();
+	
+	UFUNCTION()
+	void Reset_Effects();
 
 	UPROPERTY(EditAnywhere) 
 	int Time = 10;
+	
 	UPROPERTY() 
 	int Heal;
+
+	UPROPERTY()
+	FTimerHandle FEffectsTimer;
 };

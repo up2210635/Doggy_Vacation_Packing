@@ -39,7 +39,7 @@ void ASpawner::Tick(float DeltaTime)
 
 void ASpawner::Spawn_Start()
 {
-	srand(time(0));
+	srand(time(nullptr));
 
 	for (int i{}; i < Classes.Num(); i++)
 	{
