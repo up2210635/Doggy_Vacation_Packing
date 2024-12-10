@@ -8,6 +8,7 @@ AChoc_Item::AChoc_Item()
 {
 	IScore = -50;
 	Attack = -75;
+	Spawn_Index = BP_Choc_Item;
 }
 
 void AChoc_Item::Pick_Up()

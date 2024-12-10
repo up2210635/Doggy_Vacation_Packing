@@ -6,4 +6,5 @@
 ADogBed_Item::ADogBed_Item()
 {
 	IScore = -10;
+	Spawn_Index = BP_DogBed_Item;
 }

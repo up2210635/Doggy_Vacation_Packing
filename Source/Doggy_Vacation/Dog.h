@@ -45,6 +45,10 @@ public:
 	TSubclassOf<AParent_Item> Get_Items();
 	UFUNCTION()
 	float Get_Time();
+	UFUNCTION()
+	int Get_Spawn_index();
+	UFUNCTION()
+	void Jump_Boost();
 
 	UPROPERTY(BlueprintAssignable) 
 	FOnInteract OnInteract;

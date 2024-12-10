@@ -50,8 +50,9 @@ void Akennel::Place_Item()
 				ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 				if(Spawn)
 				{
-					FVector Location = GetActorLocation() + FVector(1000, 0, 0);
+					FVector Location = GetActorLocation() + FVector(-300, 0, 0);
 					Spawn->Spawn_Item(Dog->Get_Items(), Location);
+					Spawn->Repeat_Spawn(Dog->Get_Spawn_index());
 					Dog->Holding = false;
 				}
 				else

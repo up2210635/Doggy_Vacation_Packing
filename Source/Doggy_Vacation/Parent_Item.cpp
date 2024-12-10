@@ -20,6 +20,11 @@ AParent_Item::AParent_Item()
 	IScore = 50;
 }
 
+void AParent_Item::Initialise()
+{
+	CollisionBox->SetBoxExtent(FVector(0.0f, 0.0f, 0.0f));
+}
+
 // Called when the game starts or when spawned
 void AParent_Item::BeginPlay()
 {

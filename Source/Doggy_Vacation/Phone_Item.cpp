@@ -6,4 +6,5 @@
 APhone_Item::APhone_Item()
 {
 	IScore = -25;
+	Spawn_Index = BP_Phone_Item;
 }

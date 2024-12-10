@@ -5,4 +5,5 @@
 AFrisby_Item::AFrisby_Item()
 {
 	IScore = 15;
+	Spawn_Index = BP_Frisby_Item;
 }

@@ -5,4 +5,5 @@
 
 ABag_Item::ABag_Item() {
 	IScore = 5;
+	Spawn_Index = BP_Bag_Item;
 }

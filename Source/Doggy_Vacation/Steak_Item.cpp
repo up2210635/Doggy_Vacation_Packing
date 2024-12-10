@@ -8,6 +8,7 @@ ASteak_Item::ASteak_Item()
 {
 	IScore = 75;
 	Heal = 50;
+	Spawn_Index = BP_Steak_Item;
 }
 
 void ASteak_Item::Pick_Up()

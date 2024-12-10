@@ -132,3 +132,13 @@ float ADog::Get_Time()
 {
 	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
 }
+
+int ADog::Get_Spawn_index()
+{
+	return Inventory.Top()->Spawn_Index;
+}
+
+void ADog::Jump_Boost()
+{
+	GetCharacterMovement();
+}

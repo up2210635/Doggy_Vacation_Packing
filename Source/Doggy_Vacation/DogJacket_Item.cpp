@@ -6,4 +6,5 @@
 ADogJacket_Item::ADogJacket_Item()
 {
 	IScore = 20;
+	Spawn_Index = BP_DogJacket_Item;
 }

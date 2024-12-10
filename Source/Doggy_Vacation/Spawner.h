@@ -8,12 +8,12 @@
 
 class AParent_Item;
 
-/*UENUM()
+UENUM()
 enum Enum_Items
 {
-	BP_TeddyBear_Item_C, BP_Bone_Item_C, BP_Steak_Item_C, BP_ChewToy_Item_C, BP_ChildsBlanket_Item_C, BP_Frisby_Item_C, BP_DogJacket_Item_C, BP_HotDog_Item_C, BP_BeachBall_Item_C,
-	BP_Bag_Item_C, BP_Choc_Item_C, BP_Phone_Item_C, BP_Shoes_Item_C, BP_DogBed_Item_C, BP_Mug_Item_C, Last
-};*/
+	BP_TeddyBear_Item, BP_Bone_Item, BP_Steak_Item, BP_ChewToy_Item, BP_ChildsBlanket_Item, BP_Frisby_Item, BP_DogJacket_Item, BP_HotDog_Item, BP_BeachBall_Item,
+	BP_Bag_Item, BP_Choc_Item, BP_Phone_Item, BP_Shoes_Item, BP_DogBed_Item, BP_Mug_Item
+};
 
 UCLASS()
 class DOGGY_VACATION_API ASpawner : public AActor
@@ -29,6 +29,8 @@ public:
 	void Spawn_Start();
 	UFUNCTION()
 	void Spawn_Item(TSubclassOf<AParent_Item> Item, FVector Location);
+	UFUNCTION()
+	void Repeat_Spawn(int Item);
 	UFUNCTION()
 	float CoinFlip(int Add, int Sides);
 

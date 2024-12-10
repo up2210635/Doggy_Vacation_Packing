@@ -7,6 +7,7 @@
 ATeddyBear_Item::ATeddyBear_Item()
 {
 	IScore = 100;
+	Spawn_Index = BP_TeddyBear_Item;
 }
 
 void ATeddyBear_Item::Pick_Up()

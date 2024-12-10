@@ -5,4 +5,5 @@
 AShoes_Item::AShoes_Item()
 {
 	IScore = -25;
+	Spawn_Index = BP_Shoes_Item;
 }

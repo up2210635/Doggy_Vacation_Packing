@@ -47,9 +47,26 @@ void ASpawner::Spawn_Start()
 	}
 }
 
-void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item, FVector Location)
+void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item_Class, FVector Location)
 {
-	GetWorld()->SpawnActor<AParent_Item>(Item, Location, FRotator::ZeroRotator);
+	AParent_Item* Test = GetWorld()->SpawnActor<AParent_Item>(Item_Class, Location, FRotator::ZeroRotator);
+
+	if (Test) 
+	{
+		Test->Initialise();
+	}
+}
+
+void ASpawner::Repeat_Spawn(int Spawn_Index)
+{
+	int Class_Index;
+	if (Spawn_Index >= BP_TeddyBear_Item && Spawn_Index <= BP_ChildsBlanket_Item)
+		Class_Index = FMath::Rand() % 5;
+	else if (Spawn_Index >= BP_Frisby_Item && Spawn_Index <= BP_Bag_Item)
+		Class_Index = (FMath::Rand() % 5) + 5;
+	else
+		Class_Index = (FMath::Rand() % 5) + 10;
+	GetWorld()->SpawnActor<AParent_Item>(Classes[Class_Index], FVector(CoinFlip(150, 2701), CoinFlip(1950, 1401), CoinFlip(50, 301)), FRotator::ZeroRotator);
 }
 
 float ASpawner::CoinFlip(int Add, int Sides)

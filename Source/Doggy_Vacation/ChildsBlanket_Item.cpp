@@ -7,6 +7,7 @@
 AChildsBlanket_Item::AChildsBlanket_Item()
 {
 	IScore = 75;
+	Spawn_Index = BP_ChildsBlanket_Item;
 }
 
 void AChildsBlanket_Item::Pick_Up()

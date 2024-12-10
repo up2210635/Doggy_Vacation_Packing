@@ -6,4 +6,5 @@
 ABone_Item::ABone_Item()
 {
 	IScore = 50;
+	Spawn_Index = BP_Bone_Item;
 }

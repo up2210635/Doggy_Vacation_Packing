@@ -6,4 +6,5 @@
 ABeachBall_Item::ABeachBall_Item()
 {
 	IScore = 25;
+	Spawn_Index = BP_BeachBall_Item;
 }

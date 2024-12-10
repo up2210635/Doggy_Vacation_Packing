@@ -8,6 +8,7 @@ AHotMug_Item::AHotMug_Item()
 {
 	IScore = -50;
 	Attack = -50;
+	Spawn_Index = BP_Mug_Item;
 }
 
 void AHotMug_Item::Pick_Up()

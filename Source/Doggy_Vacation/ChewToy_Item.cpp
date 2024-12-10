@@ -6,4 +6,5 @@
 AChewToy_Item::AChewToy_Item()
 {
 	IScore = 50;
+	Spawn_Index = BP_ChewToy_Item;
 }

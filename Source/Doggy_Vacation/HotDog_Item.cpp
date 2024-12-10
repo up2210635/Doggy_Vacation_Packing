@@ -6,4 +6,5 @@
 AHotDog_Item::AHotDog_Item()
 {
 	IScore = 10;
+	Spawn_Index = BP_HotDog_Item;
 }
