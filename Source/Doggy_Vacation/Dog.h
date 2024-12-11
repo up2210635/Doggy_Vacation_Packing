@@ -42,7 +42,9 @@ public:
 	UFUNCTION()
 	void Add_Item(AParent_Item* Actor);
 	UFUNCTION()
-	TSubclassOf<AParent_Item> Get_Items();
+	TSubclassOf<AParent_Item> Get_Items_Class();
+	UFUNCTION()
+	AParent_Item* Get_Item_ptr();
 	UFUNCTION()
 	float Get_Time();
 	UFUNCTION()

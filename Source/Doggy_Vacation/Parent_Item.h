@@ -39,6 +39,9 @@ protected:
 	UFUNCTION() 
 	virtual void Pick_Up();
 
+	UFUNCTION()
+	void Disable(AParent_Item* Actor);
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

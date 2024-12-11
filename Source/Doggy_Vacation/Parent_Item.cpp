@@ -45,9 +45,16 @@ void AParent_Item::Pick_Up()
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
-			Destroy();
+			Disable(this);
 		}
 	}
+}
+
+void AParent_Item::Disable(AParent_Item* Actor)
+{
+	Actor->SetActorHiddenInGame(true);
+	Actor->SetActorEnableCollision(false);
+	Actor->SetActorTickEnabled(false);
 }
 
 // Called every frame

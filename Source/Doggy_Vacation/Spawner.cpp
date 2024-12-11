@@ -47,13 +47,15 @@ void ASpawner::Spawn_Start()
 	}
 }
 
-void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item_Class, FVector Location)
+void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item_Class, AParent_Item* Item_ptr, FVector Location)
 {
-	AParent_Item* Test = GetWorld()->SpawnActor<AParent_Item>(Item_Class, Location, FRotator::ZeroRotator);
+	Item_ptr->Destroy();
 
-	if (Test) 
+	AParent_Item* Item = GetWorld()->SpawnActor<AParent_Item>(Item_Class, Location, FRotator::ZeroRotator);
+
+	if (Item) 
 	{
-		Test->Initialise();
+		Item->Initialise();
 	}
 }
 

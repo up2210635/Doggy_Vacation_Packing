@@ -22,7 +22,7 @@ public:
 	UFUNCTION()
 	void Spawn_Start();
 	UFUNCTION()
-	void Spawn_Item(TSubclassOf<AParent_Item> Item, FVector Location);
+	void Spawn_Item(TSubclassOf<AParent_Item> Item_Class, AParent_Item* Item_ptr, FVector Location);
 	UFUNCTION()
 	void Repeat_Spawn(int Item);
 	UFUNCTION()

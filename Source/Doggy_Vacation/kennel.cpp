@@ -49,7 +49,7 @@ void Akennel::Place_Item()
 			if (Dog->Holding == true && Spawn)
 			{
 				FVector Location = GetActorLocation() + FVector(-300, 0, 0);
-				Spawn->Spawn_Item(Dog->Get_Items(), Location);
+				Spawn->Spawn_Item(Dog->Get_Items_Class(), Dog->Get_Item_ptr(), Location);
 				Dog->Holding = false;
 			}
 			else

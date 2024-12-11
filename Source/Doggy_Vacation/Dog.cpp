@@ -118,13 +118,24 @@ void ADog::Add_Item(AParent_Item* Actor)
 	Inventory.Add(Actor);
 }
 
-TSubclassOf<AParent_Item> ADog::Get_Items()
+TSubclassOf<AParent_Item> ADog::Get_Items_Class()
 {
 	if(Inventory.Top()->Actors)
 		return Inventory.Top()->Actors;
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Item not found"));
+		UE_LOG(LogTemp, Error, TEXT("Item_Class not found"));
+		return nullptr;
+	}
+}
+
+AParent_Item* ADog::Get_Item_ptr()
+{
+	if (Inventory.Top())
+		return Inventory.Top();
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Item_ptr not found"));
 		return nullptr;
 	}
 }
