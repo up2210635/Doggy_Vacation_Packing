@@ -18,7 +18,7 @@ class DOGGY_VACATION_API AChoc_Item : public AParent_Item, public IDamage_Interf
 public:
 	AChoc_Item();
 
-	virtual void Pick_Up();
+	virtual void Pick_Up() override;
 
 	UPROPERTY(EditAnywhere) int Attack;
 

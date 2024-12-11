@@ -3,6 +3,7 @@
 
 #include "Parent_Item.h"
 #include "Dog.h"
+#include "Spawner.h"
 #include "Components/BoxComPonent.h"
 
 // Sets default values
@@ -35,13 +36,15 @@ void AParent_Item::BeginPlay()
 void AParent_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == Ptr)
+	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+	if (Dog && Dog == Ptr && Spawn)
 	{
 		if (Dog->Holding == false) 
 		{
 			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
+			Spawn->Repeat_Spawn(Spawn_Index);
 			Destroy();
 		}
 	}

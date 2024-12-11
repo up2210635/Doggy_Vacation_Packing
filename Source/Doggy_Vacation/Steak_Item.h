@@ -19,7 +19,7 @@ class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Inter
 public:
 	ASteak_Item();
 	
-	virtual void Pick_Up();
+	virtual void Pick_Up() override;
 
 	virtual void TakeDamage(int Damage, int& HP) override;
 

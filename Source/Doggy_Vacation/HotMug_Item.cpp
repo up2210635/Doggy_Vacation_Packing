@@ -3,6 +3,7 @@
 
 #include "HotMug_Item.h"
 #include "Dog.h"
+#include "Spawner.h"
 
 AHotMug_Item::AHotMug_Item()
 {
@@ -14,10 +15,14 @@ AHotMug_Item::AHotMug_Item()
 void AHotMug_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == Ptr) {
+	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+	if (Dog && Dog == Ptr && Spawn) 
+	{
 		Dog->Set_Score(IScore);
+		Spawn->Repeat_Spawn(Spawn_Index);
 		TakeDamage(Attack, Dog->Health);
-		if (Dog->Health <= 0) {
+		if (Dog->Health <= 0) 
+		{
 			Dog->ResetLevel();
 		}
 		Destroy();
@@ -27,4 +32,6 @@ void AHotMug_Item::Pick_Up()
 void AHotMug_Item::TakeDamage(int Damage, int& HP)
 {
 	HP += Damage;
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, FString::Printf(TEXT("HP: %i"), HP));
 }

@@ -18,7 +18,7 @@ class DOGGY_VACATION_API AChildsBlanket_Item : public AParent_Item, public ITime
 public:
 	AChildsBlanket_Item();
 
-	virtual void Pick_Up();
+	virtual void Pick_Up() override;
 
 	virtual void Time_Changer(float Change, int& Time) override;
 

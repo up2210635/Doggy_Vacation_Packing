@@ -18,7 +18,7 @@ class DOGGY_VACATION_API ATeddyBear_Item : public AParent_Item, public ITime_Int
 public:
 	ATeddyBear_Item();
 
-	virtual void Pick_Up();
+	virtual void Pick_Up() override;
 
 	virtual void Time_Changer(float Change, int& Time) override;
 

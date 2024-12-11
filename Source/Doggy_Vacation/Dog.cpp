@@ -120,17 +120,18 @@ void ADog::Add_Item(AParent_Item* Actor)
 
 TSubclassOf<AParent_Item> ADog::Get_Items()
 {
-	return Inventory.Top()->Actors;
+	if(Inventory.Top()->Actors)
+		return Inventory.Top()->Actors;
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Item not found"));
+		return nullptr;
+	}
 }
 
 float ADog::Get_Time()
 {
 	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
-}
-
-int ADog::Get_Spawn_index()
-{
-	return Inventory.Top()->Spawn_Index;
 }
 
 void ADog::Jump_Boost()

@@ -18,9 +18,9 @@ class DOGGY_VACATION_API AHotMug_Item : public AParent_Item, public IDamage_Inte
 public:
 	AHotMug_Item();
 
-	virtual void Pick_Up();
-
-	UPROPERTY(EditAnywhere) int Attack;
+	virtual void Pick_Up() override;
 
 	virtual void TakeDamage(int Damage, int& HP) override;
+
+	UPROPERTY(EditAnywhere) int Attack;
 };

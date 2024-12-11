@@ -45,19 +45,15 @@ void Akennel::Place_Item()
 		ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 		if (Dog && Dog == Ptr)
 		{
-			if (Dog->Holding == true)
+			ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+			if (Dog->Holding == true && Spawn)
 			{
-				ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
-				if(Spawn)
-				{
-					FVector Location = GetActorLocation() + FVector(-300, 0, 0);
-					Spawn->Spawn_Item(Dog->Get_Items(), Location);
-					Spawn->Repeat_Spawn(Dog->Get_Spawn_index());
-					Dog->Holding = false;
-				}
-				else
-					UE_LOG(LogTemp, Error, TEXT("spawn cast failed"));
+				FVector Location = GetActorLocation() + FVector(-300, 0, 0);
+				Spawn->Spawn_Item(Dog->Get_Items(), Location);
+				Dog->Holding = false;
 			}
+			else
+				UE_LOG(LogTemp, Error, TEXT("Holding and Spawn failed"));
 		}
 		else
 			UE_LOG(LogTemp, Error, TEXT("dog cast failed"));

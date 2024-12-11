@@ -3,6 +3,7 @@
 
 #include "Steak_Item.h"
 #include "Dog.h"
+#include "Spawner.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 ASteak_Item::ASteak_Item()
@@ -16,17 +17,13 @@ ASteak_Item::ASteak_Item()
 void ASteak_Item::Pick_Up()
 {
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	if (Dog && Dog == Ptr)
+	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+	if (Dog && Dog == Ptr && Spawn)
 	{
 		Dog->Set_Score(IScore);
+		Spawn->Repeat_Spawn(Spawn_Index);
 		TakeDamage(Heal, Dog->Health);
 		Time_Changer(Time_Change, Dog->Time);
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("____________"));
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Health));
-		}
 		Destroy();
 	}
 }
@@ -34,9 +31,13 @@ void ASteak_Item::Pick_Up()
 void ASteak_Item::TakeDamage(int Damage, int& HP)
 {
 	HP += Damage;
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), HP));
 }
 
 void ASteak_Item::Time_Changer(float Change, int& Time)
 {
 	Time += Change;
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Time));
 }
