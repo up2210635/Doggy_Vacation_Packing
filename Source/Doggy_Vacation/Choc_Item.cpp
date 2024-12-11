@@ -16,10 +16,15 @@ void AChoc_Item::Pick_Up()
 	ADog* Dog = Cast<ADog>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 	if (Dog && Dog == Ptr) {
 		Dog->Set_Score(IScore);
-		IDamage_Interface::TakeDamage(Attack, Dog->Health);
+		TakeDamage(Attack, Dog->Health);
 		if (Dog->Health <= 0) {
 			Dog->ResetLevel();
 		}
 		Destroy();
 	}
+}
+
+void AChoc_Item::TakeDamage(int Damage, int& HP)
+{
+	HP += Damage;
 }

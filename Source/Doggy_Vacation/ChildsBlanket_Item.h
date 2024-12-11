@@ -20,6 +20,8 @@ public:
 
 	virtual void Pick_Up();
 
+	virtual void Time_Changer(float Change, int& Time) override;
+
 	UPROPERTY(EditAnywhere)
-	int Time = 10;
+	int Time_Change;
 };

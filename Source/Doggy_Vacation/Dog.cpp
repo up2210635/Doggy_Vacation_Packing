@@ -120,13 +120,7 @@ void ADog::Add_Item(AParent_Item* Actor)
 
 TSubclassOf<AParent_Item> ADog::Get_Items()
 {
-	if(Inventory.Top()->Actors)
-		return Inventory.Top()->Actors;
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("No item"));
-		return nullptr;
-	}
+	return Inventory.Top()->Actors;
 }
 
 float ADog::Get_Time()

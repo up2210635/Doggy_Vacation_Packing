@@ -7,6 +7,7 @@
 ATeddyBear_Item::ATeddyBear_Item()
 {
 	IScore = 100;
+	Time_Change = 20;
 	Spawn_Index = BP_TeddyBear_Item;
 }
 
@@ -20,7 +21,7 @@ void ATeddyBear_Item::Pick_Up()
 			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
-			ITime_Interface::Time_Changer(Time, Dog->Time);
+			Time_Changer(Time_Change, Dog->Time);
 			if (GEngine)
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("____________"));
@@ -29,4 +30,9 @@ void ATeddyBear_Item::Pick_Up()
 			Destroy();
 		}
 	}
+}
+
+void ATeddyBear_Item::Time_Changer(float Change, int& Time)
+{
+	Time += Change;
 }

@@ -23,5 +23,5 @@ class DOGGY_VACATION_API ITime_Interface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION()
-	virtual void Time_Changer(float Change, int& Time);
+	virtual void Time_Changer(float Change, int& Time) = 0;
 };

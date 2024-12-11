@@ -7,6 +7,7 @@
 AChildsBlanket_Item::AChildsBlanket_Item()
 {
 	IScore = 75;
+	Time_Change = 10;
 	Spawn_Index = BP_ChildsBlanket_Item;
 }
 
@@ -20,7 +21,7 @@ void AChildsBlanket_Item::Pick_Up()
 			Dog->Holding = true;
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
-			ITime_Interface::Time_Changer(Time, Dog->Time);
+			Time_Changer(Time_Change, Dog->Time);
 			if (GEngine)
 			{
 				GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("____________"));
@@ -29,4 +30,9 @@ void AChildsBlanket_Item::Pick_Up()
 			Destroy();
 		}
 	}
+}
+
+void AChildsBlanket_Item::Time_Changer(float Change, int& Time)
+{
+	Time += Change;
 }

@@ -20,16 +20,14 @@ public:
 	ASteak_Item();
 	
 	virtual void Pick_Up();
-	
-	UFUNCTION()
-	void Reset_Effects();
+
+	virtual void TakeDamage(int Damage, int& HP) override;
+
+	virtual void Time_Changer(float Change, int& Time) override;
 
 	UPROPERTY(EditAnywhere) 
-	int Time = 10;
+	int Time_Change;
 	
 	UPROPERTY() 
 	int Heal;
-
-	UPROPERTY()
-	FTimerHandle FEffectsTimer;
 };

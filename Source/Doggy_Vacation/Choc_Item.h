@@ -21,4 +21,6 @@ public:
 	virtual void Pick_Up();
 
 	UPROPERTY(EditAnywhere) int Attack;
+
+	virtual void TakeDamage(int Damage, int& HP) override;
 };
