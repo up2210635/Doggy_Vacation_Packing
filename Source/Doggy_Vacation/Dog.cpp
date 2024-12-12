@@ -11,10 +11,22 @@ ADog::ADog()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Configure character bools
 	Jumping = false;
 	Holding = false;
+
+	// Configure character ints
 	Health = 100;
+	PScore = 0;
 	Time = 120;
+	Time_Remaining = 0;
+
+	// Configure character movement
+	Jump_Velocity = 0.0f; Set_Jump();
+	Walk_Speed = 600.0f; Set_Walk();
+	Walk_Crouched = 300.0f; Set_Crouched();
+	Step_Height = 45.0f;
+	Gravity = 1.0f;
 }
 
 // Called when the game starts or when spawned
@@ -94,6 +106,31 @@ void ADog::Set_Score(int Change)
 	PScore += Change;
 }
 
+void ADog::Set_Jump()
+{
+	GetCharacterMovement()->JumpZVelocity = Jump_Velocity;
+}
+
+void ADog::Set_Walk()
+{
+	GetCharacterMovement()->MaxWalkSpeed = Walk_Speed;
+}
+
+void ADog::Set_Crouched()
+{
+	GetCharacterMovement()->MaxWalkSpeedCrouched = Walk_Crouched;
+}
+
+void ADog::Set_Step()
+{
+	GetCharacterMovement()->MaxStepHeight = Step_Height;
+}
+
+void ADog::Set_Gravity()
+{
+	GetCharacterMovement()->GravityScale = Gravity;
+}
+
 void ADog::ResetLevel()
 {
 		FName(FirstPersonMap) = *GetWorld()->GetName();
@@ -143,9 +180,4 @@ AParent_Item* ADog::Get_Item_ptr()
 float ADog::Get_Time()
 {
 	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
-}
-
-void ADog::Jump_Boost()
-{
-	GetCharacterMovement()->JumpZVelocity = 840.0f;
 }

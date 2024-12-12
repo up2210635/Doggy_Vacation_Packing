@@ -4,7 +4,6 @@
 #include "kennel.h"
 #include "Dog.h"
 #include "Spawner.h"
-#include "Parent_Item.h"
 #include "Components/BoxComPonent.h"
 
 // Sets default values
