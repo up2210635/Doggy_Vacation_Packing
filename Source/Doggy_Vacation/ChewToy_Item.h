@@ -19,13 +19,13 @@ public:
 
 	virtual void Pick_Up() override;
 
-	virtual void Activate_Jump_Boost(float Change_Jump, float Change_Step, ADog* Dog) override;
+	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) override;
 
-	virtual void Deactivate_Jump_boost(ADog* Dog) override;
+	virtual void Deactivate_Jump_Effects(ADog* Dog) override;
 
 protected:
 
-	FTimerHandle FEffectsTimer;
+	FTimerHandle FJumpTimer;
 
-	FTimerDelegate FEffectsDelegate;
+	FTimerDelegate FJumpDelegate;
 };

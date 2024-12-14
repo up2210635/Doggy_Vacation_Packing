@@ -22,11 +22,10 @@ ADog::ADog()
 	Time_Remaining = 0;
 
 	// Configure character movement
-	Jump_Velocity = 0.0f; Set_Jump();
+	Jump_Velocity = 420.0f; Set_Jump();
 	Walk_Speed = 600.0f; Set_Walk();
-	Walk_Crouched = 300.0f; Set_Crouched();
-	Step_Height = 45.0f;
-	Gravity = 1.0f;
+	Step_Height = 45.0f; Set_Step();
+	Gravity = 1.0f; Set_Gravity();
 }
 
 // Called when the game starts or when spawned
@@ -114,11 +113,6 @@ void ADog::Set_Jump()
 void ADog::Set_Walk()
 {
 	GetCharacterMovement()->MaxWalkSpeed = Walk_Speed;
-}
-
-void ADog::Set_Crouched()
-{
-	GetCharacterMovement()->MaxWalkSpeedCrouched = Walk_Crouched;
 }
 
 void ADog::Set_Step()

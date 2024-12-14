@@ -22,22 +22,24 @@ void ASteak_Item::Pick_Up()
 	{
 		Dog->Set_Score(IScore);
 		Spawn->Repeat_Spawn(Spawn_Index);
-		TakeDamage(Heal, Dog->Health);
-		Time_Changer(Time_Change, Dog->Time);
+		TakeDamage(Heal, Dog);
+		Time_Changer(Time_Change, Dog);
 		Destroy();
 	}
 }
 
-void ASteak_Item::TakeDamage(int Damage, int& HP)
+void ASteak_Item::TakeDamage(int Damage, ADog* Dog)
 {
-	HP += Damage;
+	Dog->Health += Damage;
+	if (Dog->Health > 150)
+		Dog->Health = 150;
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), HP));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Health));
 }
 
-void ASteak_Item::Time_Changer(float Change, int& Time)
+void ASteak_Item::Time_Changer(float Change, ADog* Dog)
 {
-	Time += Change;
+	Dog->Time += Change;
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
 }

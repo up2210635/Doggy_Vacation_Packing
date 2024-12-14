@@ -32,8 +32,8 @@ void ABone_Item::Change_Seed(float Change, ADog* Dog)
 {
 	Dog->Walk_Speed = Change;
 	Dog->Set_Walk();
-	FEffectsDelegate.BindUObject(this, &ABone_Item::Reset_speed, Dog);
-	GetWorld()->GetTimerManager().SetTimer(FEffectsTimer, FEffectsDelegate, 15.0f, false);
+	FSpeedDelegate.BindUObject(this, &ABone_Item::Reset_speed, Dog);
+	GetWorld()->GetTimerManager().SetTimer(FSpeedTimer, FSpeedDelegate, 15.0f, false);
 }
 
 void ABone_Item::Reset_speed(ADog* Dog)

@@ -22,26 +22,30 @@ void AChewToy_Item::Pick_Up()
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
-			Activate_Jump_Boost(840.0f, 100.0f, Dog);
+			Activate_Jump_Effects(840.0f, 100.0f, 2.0f, Dog);
 			Disable(this);
 		}
 	}
 }
 
-void AChewToy_Item::Activate_Jump_Boost(float Change_Jump, float Change_Step, ADog* Dog)
+void AChewToy_Item::Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog)
 {
 	Dog->Jump_Velocity = Change_Jump;
 	Dog->Step_Height = Change_Step;
+	Dog->Gravity = Change_Gravity;
 	Dog->Set_Jump();
 	Dog->Set_Step();
-	FEffectsDelegate.BindUObject(this, &AChewToy_Item::Deactivate_Jump_boost, Dog);
-	GetWorld()->GetTimerManager().SetTimer(FEffectsTimer, FEffectsDelegate, 15.0f, false);
+	Dog->Set_Gravity();
+	FJumpDelegate.BindUObject(this, &AChewToy_Item::Deactivate_Jump_Effects, Dog);
+	GetWorld()->GetTimerManager().SetTimer(FJumpTimer, FJumpDelegate, 15.0f, false);
 }
 
-void AChewToy_Item::Deactivate_Jump_boost(ADog* Dog)
+void AChewToy_Item::Deactivate_Jump_Effects(ADog* Dog)
 {
 	Dog->Jump_Velocity = 420.0f;
 	Dog->Step_Height = 45.0f;
+	Dog->Gravity = 1.0f;
 	Dog->Set_Jump();
 	Dog->Set_Step();
+	Dog->Set_Gravity();
 }

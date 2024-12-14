@@ -21,7 +21,7 @@ class DOGGY_VACATION_API IJump_Interface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void Activate_Jump_Boost(float Change_Jump, float Change_Step, ADog* Dog) = 0;
+	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) = 0;
 
-	virtual void Deactivate_Jump_boost(ADog* Dog) = 0;
+	virtual void Deactivate_Jump_Effects(ADog* Dog) = 0;
 };

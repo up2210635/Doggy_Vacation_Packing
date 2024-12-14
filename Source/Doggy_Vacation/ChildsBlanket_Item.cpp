@@ -24,15 +24,15 @@ void AChildsBlanket_Item::Pick_Up()
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
-			Time_Changer(Time_Change, Dog->Time);
+			Time_Changer(Time_Change, Dog);
 			Destroy();
 		}
 	}
 }
 
-void AChildsBlanket_Item::Time_Changer(float Change, int& Time)
+void AChildsBlanket_Item::Time_Changer(float Change, ADog* Dog)
 {
-	Time += Change;
+	Dog->Time += Change;
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
 }

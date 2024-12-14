@@ -25,7 +25,7 @@ public:
 
 protected:
 
-	FTimerHandle FEffectsTimer;
+	FTimerHandle FSpeedTimer;
 
-	FTimerDelegate FEffectsDelegate;
+	FTimerDelegate FSpeedDelegate;
 };

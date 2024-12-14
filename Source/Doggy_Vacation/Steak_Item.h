@@ -8,9 +8,7 @@
 #include "Parent_Item.h"
 #include "Steak_Item.generated.h"
 
-/**
- * 
- */
+class ADog;
 UCLASS()
 class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface, public ITime_Interface
 {
@@ -21,9 +19,9 @@ public:
 	
 	virtual void Pick_Up() override;
 
-	virtual void TakeDamage(int Damage, int& HP) override;
+	virtual void TakeDamage(int Damage, ADog* Dog) override;
 
-	virtual void Time_Changer(float Change, int& Time) override;
+	virtual void Time_Changer(float Change, ADog* Dog) override;
 
 	UPROPERTY(EditAnywhere) 
 	int Time_Change;

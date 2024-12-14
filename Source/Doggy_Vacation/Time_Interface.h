@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "Time_Interface.generated.h"
 
+class ADog;
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UTime_Interface : public UInterface
@@ -23,5 +25,5 @@ class DOGGY_VACATION_API ITime_Interface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION()
-	virtual void Time_Changer(float Change, int& Time) = 0;
+	virtual void Time_Changer(float Change, ADog* Dog) = 0;
 };

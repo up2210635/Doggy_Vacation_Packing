@@ -4,14 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "Damage_Interface.h"
+#include "Jump_Interface.h"
+#include "Speed_Interface.h"
 #include "Parent_Item.h"
 #include "HotMug_Item.generated.h"
 
-/**
- * 
- */
+class ADog;
+
 UCLASS()
-class DOGGY_VACATION_API AHotMug_Item : public AParent_Item, public IDamage_Interface
+class DOGGY_VACATION_API AHotMug_Item : public AParent_Item, public IDamage_Interface, public IJump_Interface, public ISpeed_Interface
 {
 	GENERATED_BODY()
 	
@@ -20,7 +21,23 @@ public:
 
 	virtual void Pick_Up() override;
 
-	virtual void TakeDamage(int Damage, int& HP) override;
+	virtual void TakeDamage(int Damage, ADog* Dog) override;
+
+	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) override;
+
+	virtual void Deactivate_Jump_Effects(ADog* Dog) override;
+
+	virtual void Change_Seed(float Change, ADog* Dog) override;
+
+	virtual void Reset_speed(ADog* Dog) override;
 
 	UPROPERTY(EditAnywhere) int Attack;
+
+protected:
+
+	FTimerHandle FJumpTimer;
+	FTimerHandle FSpeedTimer;
+
+	FTimerDelegate FJumpDelegate;
+	FTimerDelegate FSpeedDelegate;
 };

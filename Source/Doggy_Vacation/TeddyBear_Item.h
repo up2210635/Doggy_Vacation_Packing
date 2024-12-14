@@ -7,9 +7,7 @@
 #include "Parent_Item.h"
 #include "TeddyBear_Item.generated.h"
 
-/**
- * 
- */
+class ADog;
 UCLASS()
 class DOGGY_VACATION_API ATeddyBear_Item : public AParent_Item, public ITime_Interface
 {
@@ -20,7 +18,7 @@ public:
 
 	virtual void Pick_Up() override;
 
-	virtual void Time_Changer(float Change, int& Time) override;
+	virtual void Time_Changer(float Change, ADog* Dog) override;
 
 	UPROPERTY(EditAnywhere)
 	int Time_Change;

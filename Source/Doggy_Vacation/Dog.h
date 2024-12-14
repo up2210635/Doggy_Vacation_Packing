@@ -35,8 +35,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	float Walk_Speed;
 	UPROPERTY(EditAnywhere)
-	float Walk_Crouched;
-	UPROPERTY(EditAnywhere)
 	float Step_Height;
 	UPROPERTY(EditAnywhere)
 	float Gravity;
@@ -61,8 +59,6 @@ public:
 	void Set_Jump();
 	UFUNCTION()
 	void Set_Walk();
-	UFUNCTION()
-	void Set_Crouched();
 	UFUNCTION()
 	void Set_Step();
 	UFUNCTION()

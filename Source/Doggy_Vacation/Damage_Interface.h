@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "Damage_Interface.generated.h"
 
+class ADog;
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UDamage_Interface : public UInterface
@@ -23,5 +25,5 @@ class DOGGY_VACATION_API IDamage_Interface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION()
-	virtual void TakeDamage(int Damage, int& HP) = 0;
+	virtual void TakeDamage(int Damage, ADog* Dog) = 0;
 };
