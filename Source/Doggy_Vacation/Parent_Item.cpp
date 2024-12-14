@@ -12,14 +12,18 @@ AParent_Item::AParent_Item()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	RootComponent = CollisionBox;
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	CollisionBox->SetBoxExtent(FVector(20.f, 20.f, 20.f));
-	RootComponent = CollisionBox;
+	CollisionBox->SetSimulatePhysics(true);
+	CollisionBox->SetEnableGravity(true);
+	CollisionBox->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AParent_Item::OnOverLapBegin);
 
-	IScore = 50;
+	IScore = 50;	
 }
+
 
 void AParent_Item::Initialise()
 {
