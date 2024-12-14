@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Spawner.h"
+#include "Fetch_List.h"
 #include "Parent_Item.h"
+#include <Kismet\GameplayStatics.h>
 
 // Sets default values
 ASpawner::ASpawner()
@@ -52,10 +54,12 @@ void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item_Class, AParent_Item* It
 	Item_ptr->Destroy();
 
 	AParent_Item* Item = GetWorld()->SpawnActor<AParent_Item>(Item_Class, Location, FRotator::ZeroRotator);
+	AFetch_List* List = Cast<AFetch_List>(UGameplayStatics::GetActorOfClass(GetWorld(), AFetch_List::StaticClass()));
 
 	if (Item) 
 	{
 		Item->Initialise();
+		List->Check_List(Item->Spawn_Index);
 	}
 }
 
@@ -74,6 +78,11 @@ void ASpawner::Repeat_Spawn(int Spawn_Index)
 float ASpawner::CoinFlip(int Add, int Sides)
 {
 	return (Add + (FMath::Rand() % Sides));
+}
+
+TSubclassOf<AParent_Item> ASpawner::Get_Name(int Index)
+{
+	return Classes[Index];
 }
 
 void ASpawner::Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClass)

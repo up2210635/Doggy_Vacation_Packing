@@ -27,6 +27,8 @@ public:
 	void Repeat_Spawn(int Item);
 	UFUNCTION()
 	float CoinFlip(int Add, int Sides);
+	UFUNCTION()
+	TSubclassOf<AParent_Item> Get_Name(int Index);
 
 	void Add_Class(ConstructorHelpers::FClassFinder<AParent_Item> ItemClass);
 
