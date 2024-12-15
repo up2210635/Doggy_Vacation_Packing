@@ -4,6 +4,7 @@
 #include "ChildsBlanket_Item.h"
 #include "Dog.h"
 #include "Spawner.h"
+#include "Time_Singleton.h"
 
 AChildsBlanket_Item::AChildsBlanket_Item()
 {
@@ -32,7 +33,8 @@ void AChildsBlanket_Item::Pick_Up()
 
 void AChildsBlanket_Item::Time_Changer(float Change, ADog* Dog)
 {
-	Dog->Set_Time(Change);
+	UTime_Singleton* STime = GetGameInstance()->GetSubsystem<UTime_Singleton>();
+	STime->Add_Time(Change);
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Get_Time()));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), STime->Get_Time()));
 }

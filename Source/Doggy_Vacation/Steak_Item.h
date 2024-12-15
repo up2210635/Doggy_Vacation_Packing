@@ -4,13 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Damage_Interface.h"
-#include "Time_Interface.h"
 #include "Parent_Item.h"
 #include "Steak_Item.generated.h"
 
 class ADog;
 UCLASS()
-class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface, public ITime_Interface
+class DOGGY_VACATION_API ASteak_Item : public AParent_Item, public IDamage_Interface
 {
 	GENERATED_BODY()
 	
@@ -21,8 +20,6 @@ public:
 
 	virtual void TakeDamage(int Damage, ADog* Dog) override;
 
-	virtual void Time_Changer(float Change, ADog* Dog) override;
-
 protected:
 
 	UPROPERTY(EditAnywhere) 
@@ -30,4 +27,7 @@ protected:
 	
 	UPROPERTY() 
 	int Heal;
+
+	UFUNCTION()
+	void Time_Changer(float Change, ADog* Dog);
 };

@@ -3,6 +3,7 @@
 #include "Dog.h"
 #include "Components/StaticMeshComponent.h"
 #include "Parent_Item.h"
+#include "Time_Singleton.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
@@ -18,8 +19,6 @@ ADog::ADog()
 	// Configure character ints
 	Health = 100;
 	PScore = 0;
-	Time = 120;
-	Time_Remaining = 0;
 }
 
 // Called when the game starts or when spawned
@@ -27,7 +26,6 @@ void ADog::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetWorld()->GetTimerManager().SetTimer(FRoundTime, this, &ADog::Counter, 1.0f, true, 0.0f);
 }
 
 // Called every frame
@@ -77,8 +75,9 @@ void ADog::Print_Data()
 {
 	if (GEngine)
 	{
+		UTime_Singleton* STime = GetGameInstance()->GetSubsystem<UTime_Singleton>();
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("____________"));
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Time: %i"), Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Time: %i"), STime->Get_Time()));
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("Score: %i"), PScore));
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("HP: %i"), Health));
 	}
@@ -124,11 +123,6 @@ void ADog::Set_Holding(bool change)
 	Holding = change;
 }
 
-void ADog::Set_Time(int Change)
-{
-	Time += Change;
-}
-
 void ADog::Set_Health(int Change)
 {
 	Health = Change;
@@ -138,19 +132,6 @@ void ADog::ResetLevel()
 {
 		FName(FirstPersonMap) = *GetWorld()->GetName();
 		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
-}
-
-void ADog::Counter()
-{
-	if (Time != 0)
-	{
-		Time -= 1;
-	}
-	else
-	{
-		FName(FirstPersonMap) = *GetWorld()->GetName();
-		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
-	}
 }
 
 void ADog::Add_Item(AParent_Item* Actor)
@@ -183,11 +164,6 @@ AParent_Item* ADog::Get_Item_ptr()
 		UE_LOG(LogTemp, Error, TEXT("Item_ptr not found"));
 		return nullptr;
 	}
-}
-
-int ADog::Get_Time()
-{
-	return Time;
 }
 
 bool ADog::Get_Holding()

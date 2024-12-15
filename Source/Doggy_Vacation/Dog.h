@@ -43,8 +43,6 @@ public:
 	UFUNCTION()
 	void Set_Holding(bool change);
 	UFUNCTION()
-	void Set_Time(int Change);
-	UFUNCTION()
 	void Set_Health(int Change);
 
 	// Get function
@@ -52,8 +50,6 @@ public:
 	TSubclassOf<AParent_Item> Get_Items_Class();
 	UFUNCTION()
 	AParent_Item* Get_Item_ptr();
-	UFUNCTION()
-	int Get_Time();
 	UFUNCTION()
 	bool Get_Holding();
 	UFUNCTION()
@@ -76,10 +72,6 @@ protected:
 	int PScore;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values")
 	int Health;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
-	int Time_Remaining;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
-	int Time;
 
 	// character movement checks
 	UPROPERTY()
@@ -87,11 +79,9 @@ protected:
 	UPROPERTY()
 	bool Holding;
 
-	// Other propertys
+	// Other Properties
 	UPROPERTY(EditAnywhere, BlueprintreadWrite)
 	TArray<AParent_Item*> Inventory;
-	UPROPERTY()
-	FTimerHandle FRoundTime;
 
 	// Movement function
 	UFUNCTION()
@@ -110,6 +100,4 @@ protected:
 	// Other funtion
 	UFUNCTION()
 	void Kennel();
-	UFUNCTION()
-	void Counter();
 };

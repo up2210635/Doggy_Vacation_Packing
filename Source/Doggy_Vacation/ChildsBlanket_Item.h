@@ -3,14 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Time_Interface.h"
 #include "Parent_Item.h"
 #include "ChildsBlanket_Item.generated.h"
 
 class ADog;
 
 UCLASS()
-class DOGGY_VACATION_API AChildsBlanket_Item : public AParent_Item, public ITime_Interface
+class DOGGY_VACATION_API AChildsBlanket_Item : public AParent_Item
 {
 	GENERATED_BODY()
 	
@@ -19,10 +18,11 @@ public:
 
 	virtual void Pick_Up() override;
 
-	virtual void Time_Changer(float Change, ADog* Dog) override;
-
 protected:
 
 	UPROPERTY(EditAnywhere)
 	int Time_Change;
+
+	UFUNCTION()
+	void Time_Changer(float Change, ADog* Dog);
 };
