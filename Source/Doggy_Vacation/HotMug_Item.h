@@ -31,9 +31,19 @@ public:
 
 	virtual void Reset_speed(ADog* Dog) override;
 
-	UPROPERTY(EditAnywhere) int Attack;
-
 protected:
+
+	UPROPERTY(EditAnywhere)
+	int Attack;
+
+	UPROPERTY()
+	float New_Jump;
+	UPROPERTY()
+	float New_Step;
+	UPROPERTY()
+	float New_Gravity;
+	UPROPERTY()
+	float New_Walk;
 
 	FTimerHandle FJumpTimer;
 	FTimerHandle FSpeedTimer;

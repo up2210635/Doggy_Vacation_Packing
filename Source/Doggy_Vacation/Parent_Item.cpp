@@ -43,9 +43,9 @@ void AParent_Item::Pick_Up()
 	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 	if (Dog && Dog == Ptr && Spawn)
 	{
-		if (Dog->Holding == false) 
+		if(Dog->Get_Holding() == false) 
 		{
-			Dog->Holding = true;
+			Dog->Set_Holding(true);
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);

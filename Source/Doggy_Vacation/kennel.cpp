@@ -45,11 +45,11 @@ void Akennel::Place_Item()
 		if (Dog && Dog == Ptr)
 		{
 			ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
-			if (Dog->Holding == true && Spawn)
+			if (Dog->Get_Holding() == true && Spawn)
 			{
 				FVector Location = GetActorLocation() + FVector(-300, 0, 0);
 				Spawn->Spawn_Item(Dog->Get_Items_Class(), Dog->Get_Item_ptr(), Location);
-				Dog->Holding = false;
+				Dog->Set_Holding(false);
 			}
 			else
 				UE_LOG(LogTemp, Error, TEXT("Holding and Spawn failed"));

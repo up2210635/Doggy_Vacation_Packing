@@ -18,9 +18,9 @@ void AChildsBlanket_Item::Pick_Up()
 	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 	if (Dog && Dog == Ptr && Spawn)
 	{
-		if (Dog->Holding == false)
+		if(Dog->Get_Holding() == false)
 		{
-			Dog->Holding = true;
+			Dog->Set_Holding(true);
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
@@ -32,7 +32,7 @@ void AChildsBlanket_Item::Pick_Up()
 
 void AChildsBlanket_Item::Time_Changer(float Change, ADog* Dog)
 {
-	Dog->Time += Change;
+	Dog->Set_Time(Change);
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Get_Time()));
 }

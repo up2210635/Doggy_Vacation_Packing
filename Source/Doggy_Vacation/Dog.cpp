@@ -11,7 +11,7 @@ ADog::ADog()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//Configure character bools
+	// Configure character bools
 	Jumping = false;
 	Holding = false;
 
@@ -20,12 +20,6 @@ ADog::ADog()
 	PScore = 0;
 	Time = 120;
 	Time_Remaining = 0;
-
-	// Configure character movement
-	Jump_Velocity = 420.0f; Set_Jump();
-	Walk_Speed = 600.0f; Set_Walk();
-	Step_Height = 45.0f; Set_Step();
-	Gravity = 1.0f; Set_Gravity();
 }
 
 // Called when the game starts or when spawned
@@ -105,24 +99,39 @@ void ADog::Set_Score(int Change)
 	PScore += Change;
 }
 
-void ADog::Set_Jump()
+void ADog::Set_Jump(int Change)
 {
-	GetCharacterMovement()->JumpZVelocity = Jump_Velocity;
+	GetCharacterMovement()->JumpZVelocity = Change;
 }
 
-void ADog::Set_Walk()
+void ADog::Set_Walk(int Change)
 {
-	GetCharacterMovement()->MaxWalkSpeed = Walk_Speed;
+	GetCharacterMovement()->MaxWalkSpeed = Change;
 }
 
-void ADog::Set_Step()
+void ADog::Set_Step(int Change)
 {
-	GetCharacterMovement()->MaxStepHeight = Step_Height;
+	GetCharacterMovement()->MaxStepHeight = Change;
 }
 
-void ADog::Set_Gravity()
+void ADog::Set_Gravity(int Change)
 {
-	GetCharacterMovement()->GravityScale = Gravity;
+	GetCharacterMovement()->GravityScale = Change;
+}
+
+void ADog::Set_Holding(bool change)
+{
+	Holding = change;
+}
+
+void ADog::Set_Time(int Change)
+{
+	Time += Change;
+}
+
+void ADog::Set_Health(int Change)
+{
+	Health = Change;
 }
 
 void ADog::ResetLevel()
@@ -149,6 +158,11 @@ void ADog::Add_Item(AParent_Item* Actor)
 	Inventory.Add(Actor);
 }
 
+void ADog::Add_Health(int Change)
+{
+	Health += Change;
+}
+
 TSubclassOf<AParent_Item> ADog::Get_Items_Class()
 {
 	if(Inventory.Top()->Actors)
@@ -171,7 +185,17 @@ AParent_Item* ADog::Get_Item_ptr()
 	}
 }
 
-float ADog::Get_Time()
+int ADog::Get_Time()
 {
-	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTime);
+	return Time;
+}
+
+bool ADog::Get_Holding()
+{
+	return Holding;
+}
+
+int ADog::Get_Health()
+{
+	return Health;
 }

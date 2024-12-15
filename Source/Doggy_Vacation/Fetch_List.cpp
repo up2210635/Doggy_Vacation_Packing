@@ -25,9 +25,8 @@ void AFetch_List::Check_List(int Item)
 {
 	if (List.Find(Item) != INDEX_NONE)
 	{
-		Mark_Sheet.Add(Item);
-		List[List.Find(Item)] = 99;
-		if (Mark_Sheet.Num() == List_Size)
+		List.RemoveAt(List.Find(Item));
+		if (List.IsEmpty() == true)
 			if (GEngine)
 				GEngine->AddOnScreenDebugMessage(-1, 600.0f, FColor::Yellow, TEXT("You Win"));
 	}

@@ -23,6 +23,8 @@ public:
 
 	virtual void Time_Changer(float Change, ADog* Dog) override;
 
+protected:
+
 	UPROPERTY(EditAnywhere) 
 	int Time_Change;
 	

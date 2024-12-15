@@ -30,16 +30,16 @@ void ASteak_Item::Pick_Up()
 
 void ASteak_Item::TakeDamage(int Damage, ADog* Dog)
 {
-	Dog->Health += Damage;
-	if (Dog->Health > 150)
-		Dog->Health = 150;
+	Dog->Add_Health(Damage);
+	if (Dog->Get_Health() > 150)
+		Dog->Set_Health(150);
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Health));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("HP: %i"), Dog->Get_Health()));
 }
 
 void ASteak_Item::Time_Changer(float Change, ADog* Dog)
 {
-	Dog->Time += Change;
+	Dog->Set_Time(Change);
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Time));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, FString::Printf(TEXT("Time: %i"), Dog->Get_Time()));
 }

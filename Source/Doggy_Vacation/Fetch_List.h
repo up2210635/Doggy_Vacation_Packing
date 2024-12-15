@@ -32,9 +32,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TArray<int> List;
 
-	UPROPERTY(EditAnywhere)
-	TArray<int> Mark_Sheet;
-
 	UFUNCTION()
 	void Create_List();
 

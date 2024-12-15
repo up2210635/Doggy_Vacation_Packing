@@ -19,50 +19,33 @@ public:
 	// Sets default values for this character's properties
 	ADog();
 
-	// Basic character ints
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
-	int PScore;
-	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values") 
-	int Health;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
-	int Time_Remaining;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values") 
-	int Time;
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
-	// Character movement properties
-	UPROPERTY(EditAnywhere)
-	float Jump_Velocity;
-	UPROPERTY(EditAnywhere)
-	float Walk_Speed;
-	UPROPERTY(EditAnywhere)
-	float Step_Height;
-	UPROPERTY(EditAnywhere)
-	float Gravity;
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	// other character properties
-	UPROPERTY() 
-	bool Holding;
-
-	UPROPERTY(EditAnywhere, BlueprintreadWrite) 
-	TArray<AParent_Item*> Inventory;
-
+	// Event Dispatcher
 	UPROPERTY(BlueprintAssignable)
 	FOnInteract OnInteract;
-
-	UPROPERTY()
-	FTimerHandle FRoundTime;
 
 	// Set functions
 	UFUNCTION()
 	void Set_Score(int Change);
 	UFUNCTION()
-	void Set_Jump();
+	void Set_Jump(int Change);
 	UFUNCTION()
-	void Set_Walk();
+	void Set_Walk(int Change);
 	UFUNCTION()
-	void Set_Step();
+	void Set_Step(int Change);
 	UFUNCTION()
-	void Set_Gravity();
+	void Set_Gravity(int Change);
+	UFUNCTION()
+	void Set_Holding(bool change);
+	UFUNCTION()
+	void Set_Time(int Change);
+	UFUNCTION()
+	void Set_Health(int Change);
 
 	// Get function
 	UFUNCTION()
@@ -70,26 +53,45 @@ public:
 	UFUNCTION()
 	AParent_Item* Get_Item_ptr();
 	UFUNCTION()
-	float Get_Time();
+	int Get_Time();
+	UFUNCTION()
+	bool Get_Holding();
+	UFUNCTION()
+	int Get_Health();
 
 	// Other funtion
 	UFUNCTION()
 	void ResetLevel();
 	UFUNCTION()
 	void Add_Item(AParent_Item* Actor);
-	
+	UFUNCTION()
+	void Add_Health(int Change);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	// Basic character ints
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	int PScore;
+	UPROPERTY(EditAnywhere, BlueprintreadWrite, Category = "Values")
+	int Health;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	int Time_Remaining;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Values")
+	int Time;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	// character movement checks
+	UPROPERTY()
+	bool Jumping;
+	UPROPERTY()
+	bool Holding;
 
-protected:
+	// Other propertys
+	UPROPERTY(EditAnywhere, BlueprintreadWrite)
+	TArray<AParent_Item*> Inventory;
+	UPROPERTY()
+	FTimerHandle FRoundTime;
 
 	// Movement function
 	UFUNCTION()
@@ -110,7 +112,4 @@ protected:
 	void Kennel();
 	UFUNCTION()
 	void Counter();
-
-	UPROPERTY() 
-	bool Jumping;
 };

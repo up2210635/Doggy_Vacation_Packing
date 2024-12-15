@@ -25,6 +25,9 @@ public:
 
 protected:
 
+	UPROPERTY(EditAnywhere)
+	float New_Walk;
+
 	FTimerHandle FSpeedTimer;
 
 	FTimerDelegate FSpeedDelegate;

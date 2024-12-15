@@ -56,7 +56,7 @@ void ASpawner::Spawn_Item(TSubclassOf<AParent_Item> Item_Class, AParent_Item* It
 	AParent_Item* Item = GetWorld()->SpawnActor<AParent_Item>(Item_Class, Location, FRotator::ZeroRotator);
 	AFetch_List* List = Cast<AFetch_List>(UGameplayStatics::GetActorOfClass(GetWorld(), AFetch_List::StaticClass()));
 
-	if (Item) 
+	if (Item && List) 
 	{
 		Item->Initialise();
 		List->Check_List(Item->Spawn_Index);

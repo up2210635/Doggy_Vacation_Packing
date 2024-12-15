@@ -8,6 +8,7 @@ ABone_Item::ABone_Item()
 {
 	IScore = 50;
 	Spawn_Index = BP_Bone_Item;
+	New_Walk = 1000.0f;
 }
 
 void ABone_Item::Pick_Up()
@@ -16,13 +17,13 @@ void ABone_Item::Pick_Up()
 	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 	if (Dog && Dog == Ptr && Spawn)
 	{
-		if (Dog->Holding == false)
+		if(Dog->Get_Holding() == false)
 		{
-			Dog->Holding = true;
+			Dog->Set_Holding(true);
 			Dog->Set_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
-			Change_Seed(1000.0f, Dog);
+			Change_Seed(New_Walk, Dog);
 			Disable(this);
 		}
 	}
@@ -30,14 +31,12 @@ void ABone_Item::Pick_Up()
 
 void ABone_Item::Change_Seed(float Change, ADog* Dog)
 {
-	Dog->Walk_Speed = Change;
-	Dog->Set_Walk();
+	Dog->Set_Walk(Change);
 	FSpeedDelegate.BindUObject(this, &ABone_Item::Reset_speed, Dog);
 	GetWorld()->GetTimerManager().SetTimer(FSpeedTimer, FSpeedDelegate, 15.0f, false);
 }
 
 void ABone_Item::Reset_speed(ADog* Dog)
 {
-	Dog->Walk_Speed = 600.0f;
-	Dog->Set_Walk();
+	Dog->Set_Walk(600.0f);
 }

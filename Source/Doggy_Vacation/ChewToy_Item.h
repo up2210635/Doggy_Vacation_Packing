@@ -25,6 +25,13 @@ public:
 
 protected:
 
+	UPROPERTY()
+	float New_Jump;
+	UPROPERTY()
+	float New_Step;
+	UPROPERTY()
+	float New_Gravity;
+
 	FTimerHandle FJumpTimer;
 
 	FTimerDelegate FJumpDelegate;
