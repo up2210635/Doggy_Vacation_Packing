@@ -20,7 +20,7 @@ public:
 	virtual void Deinitialize() override;
 
 	UFUNCTION()
-	void Add_Time(int Change);
+	void Add_Time(float Change);
 
 	UFUNCTION()
 	int Get_Time();
@@ -28,11 +28,11 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Clock")
-	int Time;
+	float Time;
 
 	UPROPERTY()
-	FTimerHandle FRoundTime;
+	FTimerHandle FRoundTimer;
 
 	UFUNCTION()
-	void Counter();
+	void Restart();
 };

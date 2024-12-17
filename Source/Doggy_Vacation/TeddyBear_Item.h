@@ -21,7 +21,7 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere)
-	int Time_Change;
+	float Time_Change;
 
 	UFUNCTION()
 	void Time_Changer(float Change, ADog* Dog);

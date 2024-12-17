@@ -36,5 +36,8 @@ protected:
 	void Create_List();
 
 	UFUNCTION()
+	void Print_List();
+
+	UFUNCTION()
 	int Rand_Item();
 };

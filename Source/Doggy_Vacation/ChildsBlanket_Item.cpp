@@ -9,7 +9,7 @@
 AChildsBlanket_Item::AChildsBlanket_Item()
 {
 	IScore = 75;
-	Time_Change = 10;
+	Time_Change = 10.0f;
 	Spawn_Index = BP_ChildsBlanket_Item;
 }
 

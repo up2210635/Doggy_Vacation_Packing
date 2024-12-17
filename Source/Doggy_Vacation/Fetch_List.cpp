@@ -26,9 +26,18 @@ void AFetch_List::Check_List(int Item)
 	if (List.Find(Item) != INDEX_NONE)
 	{
 		List.RemoveAt(List.Find(Item));
-		if (List.IsEmpty() == true)
-			if (GEngine)
-				GEngine->AddOnScreenDebugMessage(-1, 600.0f, FColor::Yellow, TEXT("You Win"));
+		if (List.IsEmpty() == true && GEngine)
+		{
+
+			GEngine->ClearOnScreenDebugMessages();
+			GEngine->AddOnScreenDebugMessage(-1, 600.0f, FColor::Yellow, TEXT("You Win"));
+
+		}
+		else
+		{
+			GEngine->ClearOnScreenDebugMessages();
+			Print_List();
+		}
 	}
 }
 
@@ -49,13 +58,18 @@ void AFetch_List::Create_List()
 		List.Add(Rand_Item());
 	}
 	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
-	if (Spawn)
+	Print_List();
+}
+
+void AFetch_List::Print_List()
+{
+	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
+	if (Spawn && GEngine)
 	{
-		for (int i{}; i < List_Size; i++)
+		for (int i{}; i < List.Num(); i++)
 		{
 			FString Name = Spawn->Get_Name(List[i])->GetName();
-			if(GEngine)
-				GEngine->AddOnScreenDebugMessage(-1, 600.0f, FColor::Yellow, (TEXT("Find: %s"), Name));
+			GEngine->AddOnScreenDebugMessage(-1, 600.0f, FColor::Yellow, (TEXT("Find: %s"), Name));
 		}
 	}
 }

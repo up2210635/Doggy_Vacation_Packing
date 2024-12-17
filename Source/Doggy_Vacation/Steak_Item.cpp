@@ -11,7 +11,7 @@ ASteak_Item::ASteak_Item()
 {
 	IScore = 75;
 	Heal = 50;
-	Time_Change = 10;
+	Time_Change = 10.0f;
 	Spawn_Index = BP_Steak_Item;
 }
 

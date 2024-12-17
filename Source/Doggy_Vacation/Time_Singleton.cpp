@@ -6,7 +6,7 @@
 
 UTime_Singleton::UTime_Singleton()
 {
-	Time = 120;
+	Time = 120.0f;
 }
 
 void UTime_Singleton::Initialize(FSubsystemCollectionBase& Collection)
@@ -15,7 +15,7 @@ void UTime_Singleton::Initialize(FSubsystemCollectionBase& Collection)
 
 	UE_LOG(LogTemp, Warning, TEXT("Initialize of UTime_Singleton"));
 
-	GetWorld()->GetTimerManager().SetTimer(FRoundTime, this, &UTime_Singleton::Counter, 1.0f, true, 0.0f);
+	GetWorld()->GetTimerManager().SetTimer(FRoundTimer, this, &UTime_Singleton::Restart, Time, false);
 }
 
 void UTime_Singleton::Deinitialize()
@@ -25,25 +25,24 @@ void UTime_Singleton::Deinitialize()
 	UE_LOG(LogTemp, Warning, TEXT("Deinitialize of UTime_Singleton"));
 }
 
-void UTime_Singleton::Add_Time(int Change)
+void UTime_Singleton::Add_Time(float Change)
 {
-	Time += Change;
+	float New_Time = GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTimer) + Change;
+	GetWorld()->GetTimerManager().ClearTimer(FRoundTimer);
+	GetWorld()->GetTimerManager().SetTimer(FRoundTimer, this, &UTime_Singleton::Restart, New_Time, false);
 }
 
 int UTime_Singleton::Get_Time()
 {
-	return Time;
+	return GetWorld()->GetTimerManager().GetTimerRemaining(FRoundTimer);
 }
 
-void UTime_Singleton::Counter()
+void UTime_Singleton::Restart()
 {
-	if (Time != 0)
-	{
-		Time--;
-	}
-	else
-	{
-		FName(FirstPersonMap) = *GetWorld()->GetName();
-		UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
-	}
+	GetWorld()->GetTimerManager().ClearTimer(FRoundTimer);
+	GetWorld()->GetTimerManager().SetTimer(FRoundTimer, this, &UTime_Singleton::Restart, Time, false);
+	if (GEngine)
+		GEngine->ClearOnScreenDebugMessages();
+	FName(FirstPersonMap) = *GetWorld()->GetName();
+	UGameplayStatics::OpenLevel(GetWorld(), FirstPersonMap);
 }

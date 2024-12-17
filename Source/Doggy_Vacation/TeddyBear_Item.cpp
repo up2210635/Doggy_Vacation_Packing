@@ -9,7 +9,7 @@
 ATeddyBear_Item::ATeddyBear_Item()
 {
 	IScore = 100;
-	Time_Change = 20;
+	Time_Change = 20.0f;
 	Spawn_Index = BP_TeddyBear_Item;
 }
 

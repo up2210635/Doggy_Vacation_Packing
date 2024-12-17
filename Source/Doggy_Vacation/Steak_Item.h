@@ -23,7 +23,7 @@ public:
 protected:
 
 	UPROPERTY(EditAnywhere) 
-	int Time_Change;
+	float Time_Change;
 	
 	UPROPERTY() 
 	int Heal;
