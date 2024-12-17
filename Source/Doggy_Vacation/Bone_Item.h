@@ -21,7 +21,7 @@ public:
 
 	virtual void Change_Seed(float Change, ADog* Dog) override;
 
-	virtual void Reset_speed(ADog* Dog) override;
+	virtual void Undo_Seed_Effects(float Walk, ADog* Dog) override;
 
 protected:
 

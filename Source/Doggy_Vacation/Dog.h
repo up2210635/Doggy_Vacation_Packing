@@ -29,21 +29,31 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnInteract OnInteract;
 
-	// Set functions
+	// Add functions
 	UFUNCTION()
-	void Set_Score(int Change);
+	void Add_Score(int Change);
 	UFUNCTION()
-	void Set_Jump(int Change);
+	void Add_Jump(int Change);
 	UFUNCTION()
-	void Set_Walk(int Change);
+	void Add_Walk(int Change);
 	UFUNCTION()
-	void Set_Step(int Change);
+	void Add_Step(int Change);
 	UFUNCTION()
-	void Set_Gravity(int Change);
+	void Add_Gravity(int Change);
 	UFUNCTION()
-	void Set_Holding(bool change);
+	void Add_Item(AParent_Item* Actor);
 	UFUNCTION()
-	void Set_Health(int Change);
+	void Add_Health(int Change);
+
+	// Subtract functions
+	UFUNCTION()
+	void Subtract_Jump(int Change);
+	UFUNCTION()
+	void Subtract_Walk(int Change);
+	UFUNCTION()
+	void Subtract_Step(int Change);
+	UFUNCTION()
+	void Subtract_Gravity(int Change);
 
 	// Get function
 	UFUNCTION()
@@ -55,13 +65,15 @@ public:
 	UFUNCTION()
 	int Get_Health();
 
-	// Other funtion
+	// Set functions
+	UFUNCTION()
+	void Set_Holding(bool change);
+	UFUNCTION()
+	void Set_Health(int Change);
+
+	// runs when time == 0 || Health == 0
 	UFUNCTION()
 	void ResetLevel();
-	UFUNCTION()
-	void Add_Item(AParent_Item* Actor);
-	UFUNCTION()
-	void Add_Health(int Change);
 
 protected:
 	// Called when the game starts or when spawned

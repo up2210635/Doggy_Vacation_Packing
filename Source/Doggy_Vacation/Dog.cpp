@@ -39,7 +39,8 @@ void ADog::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
+void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ADog::MoveForward);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &ADog::MoveRight);
@@ -52,22 +53,26 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent){
 	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Data);
 }
 
-void ADog::MoveForward(float AxisVal) {
+void ADog::MoveForward(float AxisVal) 
+{
 	AddMovementInput(GetActorForwardVector() * AxisVal);
 }
 
-void ADog::MoveRight(float AxisVal) {
+void ADog::MoveRight(float AxisVal) 
+{
 	AddMovementInput(GetActorRightVector() * AxisVal);
 }
 
-void ADog::CheckJump() {
+void ADog::CheckJump() 
+{
 	if (Jumping)
 		Jumping = false;
 	else
 		Jumping = true;
 }
 
-void ADog::Kennel() {
+void ADog::Kennel() 
+{
 	OnInteract.Broadcast();
 }
 
@@ -93,29 +98,29 @@ void ADog::Print()
 	}
 }
 
-void ADog::Set_Score(int Change)
+void ADog::Add_Score(int Change)
 {
 	PScore += Change;
 }
 
-void ADog::Set_Jump(int Change)
+void ADog::Add_Jump(int Change)
 {
-	GetCharacterMovement()->JumpZVelocity = Change;
+	GetCharacterMovement()->JumpZVelocity += Change;
 }
 
-void ADog::Set_Walk(int Change)
+void ADog::Add_Walk(int Change)
 {
-	GetCharacterMovement()->MaxWalkSpeed = Change;
+	GetCharacterMovement()->MaxWalkSpeed += Change;
 }
 
-void ADog::Set_Step(int Change)
+void ADog::Add_Step(int Change)
 {
-	GetCharacterMovement()->MaxStepHeight = Change;
+	GetCharacterMovement()->MaxStepHeight += Change;
 }
 
-void ADog::Set_Gravity(int Change)
+void ADog::Add_Gravity(int Change)
 {
-	GetCharacterMovement()->GravityScale = Change;
+	GetCharacterMovement()->GravityScale += Change;
 }
 
 void ADog::Set_Holding(bool change)
@@ -142,6 +147,26 @@ void ADog::Add_Item(AParent_Item* Actor)
 void ADog::Add_Health(int Change)
 {
 	Health += Change;
+}
+
+void ADog::Subtract_Jump(int Change)
+{
+	GetCharacterMovement()->JumpZVelocity -= Change;
+}
+
+void ADog::Subtract_Walk(int Change)
+{
+	GetCharacterMovement()->MaxWalkSpeed -= Change;
+}
+
+void ADog::Subtract_Step(int Change)
+{
+	GetCharacterMovement()->MaxStepHeight -= Change;
+}
+
+void ADog::Subtract_Gravity(int Change)
+{
+	GetCharacterMovement()->GravityScale -= Change;
 }
 
 TSubclassOf<AParent_Item> ADog::Get_Items_Class()

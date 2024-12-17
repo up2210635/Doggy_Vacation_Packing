@@ -22,7 +22,7 @@ void AChildsBlanket_Item::Pick_Up()
 		if(Dog->Get_Holding() == false)
 		{
 			Dog->Set_Holding(true);
-			Dog->Set_Score(IScore);
+			Dog->Add_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
 			Time_Changer(Time_Change, Dog);

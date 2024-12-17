@@ -8,7 +8,7 @@ ABone_Item::ABone_Item()
 {
 	IScore = 50;
 	Spawn_Index = BP_Bone_Item;
-	New_Walk = 1000.0f;
+	New_Walk = 400.0f;
 }
 
 void ABone_Item::Pick_Up()
@@ -20,7 +20,7 @@ void ABone_Item::Pick_Up()
 		if(Dog->Get_Holding() == false)
 		{
 			Dog->Set_Holding(true);
-			Dog->Set_Score(IScore);
+			Dog->Add_Score(IScore);
 			Dog->Add_Item(this);
 			Spawn->Repeat_Spawn(Spawn_Index);
 			Change_Seed(New_Walk, Dog);
@@ -31,12 +31,12 @@ void ABone_Item::Pick_Up()
 
 void ABone_Item::Change_Seed(float Change, ADog* Dog)
 {
-	Dog->Set_Walk(Change);
-	FSpeedDelegate.BindUObject(this, &ABone_Item::Reset_speed, Dog);
+	Dog->Add_Walk(Change);
+	FSpeedDelegate.BindUObject(this, &ABone_Item::Undo_Seed_Effects, New_Walk, Dog);
 	GetWorld()->GetTimerManager().SetTimer(FSpeedTimer, FSpeedDelegate, 15.0f, false);
 }
 
-void ABone_Item::Reset_speed(ADog* Dog)
+void ABone_Item::Undo_Seed_Effects(float Walk, ADog* Dog)
 {
-	Dog->Set_Walk(600.0f);
+	Dog->Subtract_Walk(Walk);
 }

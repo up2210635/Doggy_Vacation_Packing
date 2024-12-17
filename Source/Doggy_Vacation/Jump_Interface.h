@@ -23,5 +23,5 @@ class DOGGY_VACATION_API IJump_Interface
 public:
 	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) = 0;
 
-	virtual void Deactivate_Jump_Effects(ADog* Dog) = 0;
+	virtual void Undo_Jump_Effects(float Jump, float Step, float Gravity, ADog* Dog) = 0;
 };

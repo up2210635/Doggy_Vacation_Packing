@@ -25,5 +25,5 @@ public:
 	virtual void Change_Seed(float Change, ADog* Dog) = 0;
 
 
-	virtual void Reset_speed(ADog* Dog) = 0;
+	virtual void Undo_Seed_Effects(float Walk, ADog* Dog) = 0;
 };

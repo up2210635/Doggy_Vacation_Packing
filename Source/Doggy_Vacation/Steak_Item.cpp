@@ -21,7 +21,7 @@ void ASteak_Item::Pick_Up()
 	ASpawner* Spawn = Cast<ASpawner>(UGameplayStatics::GetActorOfClass(GetWorld(), ASpawner::StaticClass()));
 	if (Dog && Dog == Ptr && Spawn)
 	{
-		Dog->Set_Score(IScore);
+		Dog->Add_Score(IScore);
 		Spawn->Repeat_Spawn(Spawn_Index);
 		TakeDamage(Heal, Dog);
 		Time_Changer(Time_Change, Dog);

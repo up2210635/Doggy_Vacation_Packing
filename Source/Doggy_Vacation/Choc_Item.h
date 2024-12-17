@@ -25,11 +25,11 @@ public:
 
 	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) override;
 
-	virtual void Deactivate_Jump_Effects(ADog* Dog) override;
+	virtual void Undo_Jump_Effects(float Jump, float Step, float Gravity, ADog* Dog) override;
 
 	virtual void Change_Seed(float Change, ADog* Dog) override;
 
-	virtual void Reset_speed(ADog* Dog) override;
+	virtual void Undo_Seed_Effects(float Walk, ADog* Dog) override;
 
 protected:
 

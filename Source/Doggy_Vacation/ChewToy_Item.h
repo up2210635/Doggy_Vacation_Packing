@@ -21,7 +21,7 @@ public:
 
 	virtual void Activate_Jump_Effects(float Change_Jump, float Change_Step, float Change_Gravity, ADog* Dog) override;
 
-	virtual void Deactivate_Jump_Effects(ADog* Dog) override;
+	virtual void Undo_Jump_Effects(float Jump, float Step, float Gravity, ADog* Dog) override;
 
 protected:
 
