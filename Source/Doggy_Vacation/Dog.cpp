@@ -15,6 +15,7 @@ ADog::ADog()
 	// Configure character bools
 	Jumping = false;
 	Holding = false;
+	Walking = true;
 
 	// Configure character ints
 	Health = 100;
@@ -26,6 +27,7 @@ void ADog::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//UGameplayStatics::PlaySoundAtLocation(this, Wood_spteps, GetActorLocation());
 }
 
 // Called every frame
@@ -49,11 +51,22 @@ void ADog::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ADog::CheckJump);
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ADog::CheckJump);
+	PlayerInputComponent->BindAction(TEXT("Step"), IE_Repeat, this, &ADog::CheckStep);
+	PlayerInputComponent->BindAction(TEXT("Step"), IE_Released, this, &ADog::CheckStep);
 	PlayerInputComponent->BindAction(TEXT("Interact"), IE_Pressed, this, &ADog::Kennel);
 	PlayerInputComponent->BindAction(TEXT("Time"), IE_Pressed, this, &ADog::Print_Data);
 }
 
-void ADog::MoveForward(float AxisVal) 
+void ADog::CheckStep()
+{
+	bool Walk_Time = GetWorld()->GetTimerManager().IsTimerActive(FWalkTimer);
+	if (Walking == true && Walk_Time == false)
+		GetWorld()->GetTimerManager().SetTimer(FWalkTimer, this, &ADog::Walk_Sound, 0.25f, false);
+	else
+		Walking = true;
+}
+
+void ADog::MoveForward(float AxisVal)
 {
 	AddMovementInput(GetActorForwardVector() * AxisVal);
 }
@@ -71,7 +84,13 @@ void ADog::CheckJump()
 		Jumping = true;
 }
 
-void ADog::Kennel() 
+void ADog::Walk_Sound()
+{
+	UGameplayStatics::PlaySoundAtLocation(this, Wood_spteps, GetActorLocation());
+	Walking = false;
+}
+
+void ADog::Kennel()
 {
 	OnInteract.Broadcast();
 }

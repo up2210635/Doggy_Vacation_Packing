@@ -90,12 +90,20 @@ protected:
 	bool Jumping;
 	UPROPERTY()
 	bool Holding;
+	UPROPERTY()
+	bool Walking;
 
 	// Other Properties
+	UPROPERTY()
+	FTimerHandle FWalkTimer;
+	UPROPERTY(EditAnywhere)
+	USoundBase* Wood_spteps;
 	UPROPERTY(EditAnywhere, BlueprintreadWrite)
 	TArray<AParent_Item*> Inventory;
 
 	// Movement function
+	UFUNCTION()
+	void CheckStep();
 	UFUNCTION()
 	void MoveForward(float AxisVal);
 	UFUNCTION()
@@ -110,6 +118,8 @@ protected:
 	void Print();
 
 	// Other funtion
+	UFUNCTION()
+	void Walk_Sound();
 	UFUNCTION()
 	void Kennel();
 };
